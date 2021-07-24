@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Its Raining Pixels.mp3-5fef67929f927abbde91c9d067fc713e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Its Raining Pixels.mp3"
+dest_files=[ "res://.import/Its Raining Pixels.mp3-5fef67929f927abbde91c9d067fc713e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

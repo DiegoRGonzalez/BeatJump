@@ -1,0 +1,135 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/fonts/mayor/Mayor-Italic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/menu/LevelSelect.gd" type="Script" id=2]
+[ext_resource path="res://scenes/levels/level1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/level2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/levels/level3.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFontData" id=1]
+antialiased = false
+font_path = "res://assets/fonts/mayor/Mayor.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 13
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://assets/fonts/mayor/Mayor-Italic.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[node name="Control" type="Control"]
+margin_right = 1025.0
+margin_bottom = 600.0
+mouse_filter = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+level_1_scn = ExtResource( 3 )
+level_2_scn = ExtResource( 4 )
+level_3_scn = ExtResource( 5 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 603.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 596.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Control"]
+margin_left = 35.2063
+margin_top = 36.4756
+margin_right = 466.206
+margin_bottom = 118.476
+custom_fonts/font = SubResource( 2 )
+text = "Level Select"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 596.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="level2" type="Button" parent="PanelContainer/Control2"]
+margin_left = 54.5925
+margin_top = 217.005
+margin_right = 321.592
+margin_bottom = 251.005
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+text = "2. Castle Beginings"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level1" type="Button" parent="PanelContainer/Control2"]
+margin_left = 53.0
+margin_top = 173.0
+margin_right = 357.0
+margin_bottom = 198.0
+theme = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
+text = "1. Outside The CAstle"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level3" type="Button" parent="PanelContainer/Control2"]
+margin_left = 53.7937
+margin_top = 261.101
+margin_right = 385.794
+margin_bottom = 286.101
+theme = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
+text = "3. Floating Pillars"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="PanelContainer/Control2/level2" to="." method="_on_level2_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/level1" to="." method="_on_level1_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/level3" to="." method="_on_level3_pressed"]

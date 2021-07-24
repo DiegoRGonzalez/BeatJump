@@ -1,0 +1,4 @@
+Tempo: 120
+Bars: 12
+Beats In Bar: 4
+Transition Beats: 0
