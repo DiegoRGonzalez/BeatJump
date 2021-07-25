@@ -24,6 +24,7 @@ func _on_Area2D_body_entered(body):
 func _ready():
 	end = false;
 	$Fade.visible = true;
+#	$MusicBox.mute(0,0)
 	pass;
 	
 func _process(delta):
@@ -35,9 +36,12 @@ func _process(delta):
 
 func _fade_out():
 	app_state.set_trigger("restart_level")
+	if $projectiles:
+		var active_projectiles = $projectiles.get_children();
+		for i in range(active_projectiles.size()):
+			active_projectiles[i].queue_free();
 	end = true;
-	$MusicBox.stop(0)
-
+	$Music.stop_all();
 
 func _on_DeathArea2D_body_entered(body):
 	if body is Player:
@@ -45,4 +49,4 @@ func _on_DeathArea2D_body_entered(body):
 
 func _unhandled_key_input(event):
 	if Input.is_action_just_pressed("mute"):
-		$MusicBox.mute(0,0)
+		$Music.mute("EDM","EDM")

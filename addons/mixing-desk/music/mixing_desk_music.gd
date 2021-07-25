@@ -166,7 +166,13 @@ func _trackname_to_int(song, ref):
 		return songs[song]._get_core().get_node(ref).get_index()
 	else:
 		return ref
-	
+
+func stop_all():
+	songs = get_children();
+	for i in range(songs.size()):
+		if "playing" in songs[i]:
+			songs[i].playing = false;
+
 #play a song
 func play(song):
 	song = _songname_to_int(song)

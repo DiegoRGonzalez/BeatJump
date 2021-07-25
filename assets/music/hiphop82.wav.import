@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hiphop82.wav-c02b851d2f500d05066f7fae1c13b66c.sample"
+
+[deps]
+
+source_file="res://assets/music/hiphop82.wav"
+dest_files=[ "res://.import/hiphop82.wav-c02b851d2f500d05066f7fae1c13b66c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scenes/common/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/GameDevAssets/boy.png" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/FloatCondition.gd" type="Script" id=8]
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=9]
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" type="Script" id=10]
+[ext_resource path="res://assets/GameDevAssets/dot_long.png" type="Texture" id=11]
+[ext_resource path="res://assets/GameDevAssets/dot_short.png" type="Texture" id=12]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 6 )
@@ -21,51 +23,51 @@ name = "Entry"
 [sub_resource type="Resource" id=2]
 script = ExtResource( 6 )
 __meta__ = {
+"graph_offset": Vector2( 428, 120 )
+}
+name = "die"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 6 )
+__meta__ = {
 "graph_offset": Vector2( 508, -200 )
 }
 name = "falling"
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=4]
 script = ExtResource( 6 )
 __meta__ = {
 "graph_offset": Vector2( 348, -140 )
 }
 name = "idle"
 
-[sub_resource type="Resource" id=4]
+[sub_resource type="Resource" id=5]
 script = ExtResource( 6 )
 __meta__ = {
 "graph_offset": Vector2( 868, -200 )
 }
 name = "jump"
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=6]
 script = ExtResource( 6 )
 __meta__ = {
 "graph_offset": Vector2( 501.5, -140 )
 }
 name = "jumping"
 
-[sub_resource type="Resource" id=6]
+[sub_resource type="Resource" id=7]
 script = ExtResource( 6 )
 __meta__ = {
 "graph_offset": Vector2( 859.5, -140 )
 }
 name = "lost_floor"
 
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=8]
 script = ExtResource( 6 )
 __meta__ = {
 "graph_offset": Vector2( 497.5, -60 )
 }
 name = "wall_slide"
-
-[sub_resource type="Resource" id=8]
-script = ExtResource( 6 )
-__meta__ = {
-"graph_offset": Vector2( 428, 120 )
-}
-name = "die"
 
 [sub_resource type="Resource" id=9]
 script = ExtResource( 5 )
@@ -75,81 +77,81 @@ conditions = {
 }
 
 [sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+name = "die"
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+from = "falling"
+to = "die"
+conditions = {
+"die": SubResource( 10 )
+}
+
+[sub_resource type="Resource" id=12]
 script = ExtResource( 4 )
 name = "on_floor"
 comparation = 0
 value = true
 
-[sub_resource type="Resource" id=11]
+[sub_resource type="Resource" id=13]
 script = ExtResource( 5 )
 from = "falling"
 to = "idle"
 conditions = {
-"on_floor": SubResource( 10 )
+"on_floor": SubResource( 12 )
 }
 
-[sub_resource type="Resource" id=12]
+[sub_resource type="Resource" id=14]
 script = ExtResource( 10 )
 name = "wall_direction"
 comparation = 1
 value = 0
 
-[sub_resource type="Resource" id=13]
+[sub_resource type="Resource" id=15]
 script = ExtResource( 5 )
 from = "falling"
 to = "wall_slide"
 conditions = {
-"wall_direction": SubResource( 12 )
-}
-
-[sub_resource type="Resource" id=14]
-script = ExtResource( 3 )
-name = "die"
-
-[sub_resource type="Resource" id=15]
-script = ExtResource( 5 )
-from = "falling"
-to = "die"
-conditions = {
-"die": SubResource( 14 )
+"wall_direction": SubResource( 14 )
 }
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 3 )
-name = "jump"
+name = "die"
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 5 )
 from = "idle"
-to = "jump"
+to = "die"
 conditions = {
-"jump": SubResource( 16 )
+"die": SubResource( 16 )
 }
 
 [sub_resource type="Resource" id=18]
+script = ExtResource( 3 )
+name = "jump"
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 5 )
+from = "idle"
+to = "jump"
+conditions = {
+"jump": SubResource( 18 )
+}
+
+[sub_resource type="Resource" id=20]
 script = ExtResource( 4 )
 name = "on_floor"
 comparation = 0
 value = false
 
-[sub_resource type="Resource" id=19]
+[sub_resource type="Resource" id=21]
 script = ExtResource( 5 )
 from = "idle"
 to = "lost_floor"
 conditions = {
-"on_floor": SubResource( 18 )
-}
-
-[sub_resource type="Resource" id=20]
-script = ExtResource( 3 )
-name = "die"
-
-[sub_resource type="Resource" id=21]
-script = ExtResource( 5 )
-from = "idle"
-to = "die"
-conditions = {
-"die": SubResource( 20 )
+"on_floor": SubResource( 20 )
 }
 
 [sub_resource type="Resource" id=22]
@@ -160,57 +162,57 @@ conditions = {
 }
 
 [sub_resource type="Resource" id=23]
+script = ExtResource( 3 )
+name = "die"
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 5 )
+from = "jumping"
+to = "die"
+conditions = {
+"die": SubResource( 23 )
+}
+
+[sub_resource type="Resource" id=25]
 script = ExtResource( 8 )
 name = "velocity_y"
 comparation = 2
 value = 0.0
 
-[sub_resource type="Resource" id=24]
+[sub_resource type="Resource" id=26]
 script = ExtResource( 5 )
 from = "jumping"
 to = "falling"
 conditions = {
-"velocity_y": SubResource( 23 )
+"velocity_y": SubResource( 25 )
 }
 
-[sub_resource type="Resource" id=25]
+[sub_resource type="Resource" id=27]
 script = ExtResource( 4 )
 name = "on_floor"
 comparation = 0
 value = true
 
-[sub_resource type="Resource" id=26]
+[sub_resource type="Resource" id=28]
 script = ExtResource( 5 )
 from = "jumping"
 to = "idle"
 conditions = {
-"on_floor": SubResource( 25 )
+"on_floor": SubResource( 27 )
 }
 
-[sub_resource type="Resource" id=27]
+[sub_resource type="Resource" id=29]
 script = ExtResource( 10 )
 name = "wall_direction"
 comparation = 1
 value = 0
 
-[sub_resource type="Resource" id=28]
+[sub_resource type="Resource" id=30]
 script = ExtResource( 5 )
 from = "jumping"
 to = "wall_slide"
 conditions = {
-"wall_direction": SubResource( 27 )
-}
-
-[sub_resource type="Resource" id=29]
-script = ExtResource( 3 )
-name = "die"
-
-[sub_resource type="Resource" id=30]
-script = ExtResource( 5 )
-from = "jumping"
-to = "die"
-conditions = {
-"die": SubResource( 29 )
+"wall_direction": SubResource( 29 )
 }
 
 [sub_resource type="Resource" id=31]
@@ -221,55 +223,55 @@ conditions = {
 }
 
 [sub_resource type="Resource" id=32]
+script = ExtResource( 3 )
+name = "die"
+
+[sub_resource type="Resource" id=33]
+script = ExtResource( 5 )
+from = "wall_slide"
+to = "die"
+conditions = {
+"die": SubResource( 32 )
+}
+
+[sub_resource type="Resource" id=34]
 script = ExtResource( 4 )
 name = "on_floor"
 comparation = 0
 value = true
 
-[sub_resource type="Resource" id=33]
+[sub_resource type="Resource" id=35]
 script = ExtResource( 5 )
 from = "wall_slide"
 to = "idle"
 conditions = {
-"on_floor": SubResource( 32 )
+"on_floor": SubResource( 34 )
 }
 
-[sub_resource type="Resource" id=34]
+[sub_resource type="Resource" id=36]
 script = ExtResource( 3 )
 name = "jump"
 
-[sub_resource type="Resource" id=35]
+[sub_resource type="Resource" id=37]
 script = ExtResource( 5 )
 from = "wall_slide"
 to = "jump"
 conditions = {
-"jump": SubResource( 34 )
+"jump": SubResource( 36 )
 }
 
-[sub_resource type="Resource" id=36]
+[sub_resource type="Resource" id=38]
 script = ExtResource( 10 )
 name = "wall_direction"
 comparation = 0
 value = 0
 
-[sub_resource type="Resource" id=37]
+[sub_resource type="Resource" id=39]
 script = ExtResource( 5 )
 from = "wall_slide"
 to = "jumping"
 conditions = {
-"wall_direction": SubResource( 36 )
-}
-
-[sub_resource type="Resource" id=38]
-script = ExtResource( 3 )
-name = "die"
-
-[sub_resource type="Resource" id=39]
-script = ExtResource( 5 )
-from = "wall_slide"
-to = "die"
-conditions = {
-"die": SubResource( 38 )
+"wall_direction": SubResource( 38 )
 }
 
 [sub_resource type="Resource" id=40]
@@ -277,52 +279,52 @@ script = ExtResource( 9 )
 name = ""
 states = {
 "Entry": SubResource( 1 ),
-"die": SubResource( 8 ),
-"falling": SubResource( 2 ),
-"idle": SubResource( 3 ),
-"jump": SubResource( 4 ),
-"jumping": SubResource( 5 ),
-"lost_floor": SubResource( 6 ),
-"wall_slide": SubResource( 7 )
+"die": SubResource( 2 ),
+"falling": SubResource( 3 ),
+"idle": SubResource( 4 ),
+"jump": SubResource( 5 ),
+"jumping": SubResource( 6 ),
+"lost_floor": SubResource( 7 ),
+"wall_slide": SubResource( 8 )
 }
 transitions = {
 "Entry": {
 "idle": SubResource( 9 )
 },
 "falling": {
-"die": SubResource( 15 ),
-"idle": SubResource( 11 ),
-"wall_slide": SubResource( 13 )
+"die": SubResource( 11 ),
+"idle": SubResource( 13 ),
+"wall_slide": SubResource( 15 )
 },
 "idle": {
-"die": SubResource( 21 ),
-"jump": SubResource( 17 ),
-"lost_floor": SubResource( 19 )
+"die": SubResource( 17 ),
+"jump": SubResource( 19 ),
+"lost_floor": SubResource( 21 )
 },
 "jump": {
 "jumping": SubResource( 22 )
 },
 "jumping": {
-"die": SubResource( 30 ),
-"falling": SubResource( 24 ),
-"idle": SubResource( 26 ),
-"wall_slide": SubResource( 28 )
+"die": SubResource( 24 ),
+"falling": SubResource( 26 ),
+"idle": SubResource( 28 ),
+"wall_slide": SubResource( 30 )
 },
 "lost_floor": {
 "jumping": SubResource( 31 )
 },
 "wall_slide": {
-"die": SubResource( 39 ),
-"idle": SubResource( 33 ),
-"jump": SubResource( 35 ),
-"jumping": SubResource( 37 )
+"die": SubResource( 33 ),
+"idle": SubResource( 35 ),
+"jump": SubResource( 37 ),
+"jumping": SubResource( 39 )
 }
 }
 
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 10.2583, 15.7297 )
+extents = Vector2( 9.32073, 15.0776 )
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=42]
 resource_name = "die"
 length = 3.0
 loop = true
@@ -349,7 +351,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.7, 1.5 )
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=43]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -365,7 +367,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=44]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -380,7 +382,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=45]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -396,7 +398,7 @@ tracks/0/keys = {
 "values": [ 3 ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=46]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -431,11 +433,11 @@ frame = 3
 region_rect = Rect2( 0, 0, 40, 40 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/die = SubResource( 46 )
-anims/fall = SubResource( 42 )
-anims/idle = SubResource( 43 )
-anims/jump = SubResource( 44 )
-anims/wall_slide = SubResource( 45 )
+anims/die = SubResource( 42 )
+anims/fall = SubResource( 43 )
+anims/idle = SubResource( 44 )
+anims/jump = SubResource( 45 )
+anims/wall_slide = SubResource( 46 )
 
 [node name="WallRaycasts" type="Node2D" parent="."]
 
@@ -466,3 +468,13 @@ position = Vector2( -6, 8 )
 scale = Vector2( 10, 0.1 )
 enabled = true
 cast_to = Vector2( -1, 0 )
+
+[node name="JumpDotLong" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+z_index = 200
+texture = ExtResource( 11 )
+
+[node name="JumpDotShort" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+z_index = 200
+texture = ExtResource( 12 )

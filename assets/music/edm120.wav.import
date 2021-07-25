@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/edm120.wav-f8cf9a7a8468f73fa44ec4518c0e4afc.sample"
+
+[deps]
+
+source_file="res://assets/music/edm120.wav"
+dest_files=[ "res://.import/edm120.wav-f8cf9a7a8468f73fa44ec4518c0e4afc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/music/edm120.wav" type="AudioStream" id=1]
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=2]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=4]
+
+[node name="Music" type="Node"]
+script = ExtResource( 4 )
+play_mode = 4
+autoplay = true
+autoplay_song = NodePath("EDM/Core/EDM")
+
+[node name="EDM" type="Node" parent="."]
+script = ExtResource( 2 )
+tempo = 120
+bars = 8
+beats_in_bar = 4
+
+[node name="Core" type="Node" parent="EDM"]
+script = ExtResource( 3 )
+
+[node name="EDM" type="AudioStreamPlayer" parent="EDM/Core"]
+stream = ExtResource( 1 )
