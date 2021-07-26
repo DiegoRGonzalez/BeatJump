@@ -420,20 +420,20 @@ point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 58 )
 
-[sub_resource type="Resource" id=74]
+[sub_resource type="Resource" id=60]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=75]
+[sub_resource type="Resource" id=61]
 script = ExtResource( 6 )
 position = Vector2( -658.579, -585.767 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 74 )
+properties = SubResource( 60 )
 
-[sub_resource type="Resource" id=60]
+[sub_resource type="Resource" id=62]
 script = ExtResource( 4 )
 _points = {
 17: SubResource( 11 ),
@@ -461,26 +461,13 @@ _points = {
 69: SubResource( 55 ),
 70: SubResource( 57 ),
 71: SubResource( 59 ),
-72: SubResource( 75 )
+72: SubResource( 61 )
 }
 _point_order = [ 34, 66, 23, 17, 22, 39, 56, 64, 65, 63, 62, 40, 41, 42, 43, 49, 72, 47, 68, 48, 67, 71, 70, 69, 44, 45 ]
 _constraints = {
 [ 34, 45 ]: 15
 }
 _next_key = 73
-
-[sub_resource type="Resource" id=61]
-script = ExtResource( 3 )
-texture_idx = 0
-flip = false
-width = 1.0
-
-[sub_resource type="Resource" id=62]
-script = ExtResource( 6 )
-position = Vector2( -1249.41, 36.6433 )
-point_in = Vector2( 0, 0 )
-point_out = Vector2( 0, 0 )
-properties = SubResource( 61 )
 
 [sub_resource type="Resource" id=63]
 script = ExtResource( 3 )
@@ -490,7 +477,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=64]
 script = ExtResource( 6 )
-position = Vector2( 476.092, -580.461 )
+position = Vector2( -1249.41, 36.6433 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 63 )
@@ -503,7 +490,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=66]
 script = ExtResource( 6 )
-position = Vector2( 490.04, 41.6024 )
+position = Vector2( 476.092, -580.461 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 65 )
@@ -516,7 +503,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=68]
 script = ExtResource( 6 )
-position = Vector2( -1249.41, 36.6433 )
+position = Vector2( 490.04, 41.6024 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 67 )
@@ -529,7 +516,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=70]
 script = ExtResource( 6 )
-position = Vector2( -490.263, 42.9743 )
+position = Vector2( -1249.41, 36.6433 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 69 )
@@ -542,20 +529,33 @@ width = 1.0
 
 [sub_resource type="Resource" id=72]
 script = ExtResource( 6 )
-position = Vector2( -1240.42, -612.019 )
+position = Vector2( -490.263, 42.9743 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 71 )
 
 [sub_resource type="Resource" id=73]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=74]
+script = ExtResource( 6 )
+position = Vector2( -1240.42, -612.019 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 73 )
+
+[sub_resource type="Resource" id=75]
 script = ExtResource( 4 )
 _points = {
-33: SubResource( 62 ),
-35: SubResource( 64 ),
-38: SubResource( 66 ),
-42: SubResource( 68 ),
-43: SubResource( 70 ),
-45: SubResource( 72 )
+33: SubResource( 64 ),
+35: SubResource( 66 ),
+38: SubResource( 68 ),
+42: SubResource( 70 ),
+43: SubResource( 72 ),
+45: SubResource( 74 )
 }
 _point_order = [ 33, 45, 35, 38, 43, 42 ]
 _constraints = {
@@ -647,14 +647,14 @@ __meta__ = {
 }
 collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 shape_material = SubResource( 9 )
-_points = SubResource( 60 )
+_points = SubResource( 62 )
 material_overrides = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Castle/StaticBody2D"]
 visible = false
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( 975.79, 81.383, 260.587, 254.601, 212.214, 225.93, 161.565, 203.378, 132.631, 193.255, 102.412, 185.202, 71.7503, 180.186, 56.5159, 179.121, 41.4857, 179.194, 26.7664, 180.515, 12.4636, 183.207, -1.31686, 187.391, -14.4699, 193.187, -26.891, 200.716, -38.4759, 210.1, -49.12, 221.46, -58.718, 234.92, -67.1636, 250.601, -74.3505, 268.627, -80.1722, 289.118, -84.5172, 312.197, -86.8858, 338.494, -86.9236, 368.368, -80.6089, 437.688, -46.5794, 606.523, 74.0834, 1000.16, 266.903, 1496.55, -1073.18, 1534.2, -813.484, 52.8349, -788.418, -527.681, -658.251, -546.625, -721.813, -286.403, -732.791, -249.005, -737.377, -237.212, -739.384, -233.413, -740.301, -232.076, -741.198, -231.173, -741.991, -230.321, -742.792, -229.299, -743.556, -228.074, -744.281, -226.652, -745.655, -223.27, -746.9, -219.208, -750.918, -197.31, -754.983, -137.898, -752.113, -59.4182, -519.646, -53.6169, -518.75, -21.2549, -475.597, -20.1531, -475.34, 5.25069, 909.793, 0.99859, 901.035, -577.914, -658.494, -586.391, -781.355, -617.68, -800.623, -676.475, -779.534, -696.375, -741.252, -746.947, -723.375, -778.129, -716.271, -794.283, -710.962, -810.465, -709.113, -818.484, -707.887, -826.415, -707.328, -834.222, -707.492, -841.873, -708.427, -849.334, -710.193, -856.574, -712.84, -863.559, -716.393, -870.275, -720.723, -878.654, -725.481, -890.561, -736.22, -923.916, -761.452, -1021.89, -892.043, -1655.8, 1170.46, -1636.54, 871.721, -855.452, 866.895, -828.84, 865.257, -804.962, 866.443, -783.653, 870.051, -764.766, 872.644, -756.187, 875.72, -748.172, 883.038, -733.738, 891.571, -721.312, 900.932, -710.769, 910.715, -701.973, 920.514, -694.789, 929.92, -689.081, 938.531, -684.723, 951.726, -679.477, 959.192, -679.793, 960.47, -584.363 )
+polygon = PoolVector2Array( 975.79, 81.383, 260.587, 254.601, 212.215, 225.93, 161.566, 203.378, 132.632, 193.255, 102.412, 185.202, 71.7505, 180.186, 56.5161, 179.121, 41.4858, 179.194, 26.7665, 180.515, 12.4637, 183.207, -1.31677, 187.391, -14.4699, 193.187, -26.891, 200.716, -38.4758, 210.1, -49.12, 221.46, -58.718, 234.919, -67.1636, 250.601, -74.3504, 268.627, -80.1722, 289.118, -84.5172, 312.197, -86.8858, 338.494, -86.9237, 368.368, -80.6089, 437.688, -46.5795, 606.523, 74.0833, 1000.15, 266.903, 1496.55, -1073.18, 1534.2, -813.484, 52.8349, -788.418, -527.681, -658.251, -546.624, -721.813, -286.403, -732.791, -249.005, -737.377, -237.212, -739.384, -233.413, -740.301, -232.076, -741.198, -231.173, -741.991, -230.321, -742.792, -229.299, -743.556, -228.074, -744.281, -226.652, -745.655, -223.27, -746.9, -219.208, -750.918, -197.31, -754.983, -137.898, -752.113, -59.4182, -519.646, -53.6169, -518.75, -21.2549, -475.597, -20.1531, -475.34, 5.25069, 909.793, 0.99859, 901.035, -577.914, -658.494, -586.391, -781.355, -617.679, -800.623, -676.476, -779.534, -696.376, -741.253, -746.947, -723.375, -778.129, -716.271, -794.284, -710.962, -810.465, -709.114, -818.484, -707.888, -826.415, -707.328, -834.223, -707.492, -841.873, -708.428, -849.334, -710.193, -856.574, -712.84, -863.559, -716.394, -870.275, -720.724, -878.654, -725.481, -890.561, -736.22, -923.916, -761.452, -1021.89, -892.043, -1655.8, 1170.47, -1636.53, 871.721, -855.453, 866.895, -828.84, 865.257, -804.962, 866.443, -783.653, 870.051, -764.766, 872.644, -756.188, 875.721, -748.173, 883.038, -733.738, 891.571, -721.312, 900.932, -710.769, 910.716, -701.973, 920.514, -694.789, 929.92, -689.081, 938.532, -684.723, 951.726, -679.477, 959.193, -679.792, 960.47, -584.363 )
 
 [node name="CastleBg" type="Node2D" parent="Castle"]
 modulate = Color( 0.623529, 0.607843, 0.607843, 1 )
@@ -665,7 +665,7 @@ __meta__ = {
 }
 collision_polygon_node_path = NodePath("../../CollisionPolygon2D")
 shape_material = SubResource( 9 )
-_points = SubResource( 73 )
+_points = SubResource( 75 )
 material_overrides = {
 }
 

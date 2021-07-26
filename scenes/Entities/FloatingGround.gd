@@ -21,7 +21,6 @@ func _ready():
 
 func _process(delta):
 	tick+=1;
-	$StaticBody2D.position.y += sin(tick/800.0)*10*delta
 	if moving:
 		if curBeat%move_period >= move_period/2:
 			$StaticBody2D.position += moveDirection*speed*delta
