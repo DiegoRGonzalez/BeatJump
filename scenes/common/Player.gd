@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 onready var smp = $StateMachinePlayer
 
-var friction = 0.4;
+var friction = 0.3;
+var wall_friction = 0.8
 var acceleration = 1;
 var velocity = Vector2.ZERO
 var gravity = Vector2.DOWN * 25.0
@@ -14,6 +15,7 @@ var falling_count = 0;
 var floor_normal = Vector2.UP;
 
 var using_joystick = false;
+var last_jump_time = OS.get_system_time_msecs()
 
 var last_mouse = Vector2.ZERO;
 
@@ -41,12 +43,11 @@ func _physics_process(delta):
 				smp.set_param("velocity_y", velocity.y)
 				$Sprite.rotation = 0
 			"wall_slide":
-				velocity.x += wall_direction*10
 				$Sprite.flip_h = (wall_direction == -1)
-				position += wall_velocity*delta
-				if (velocity.y > 0):
-					velocity += -0.2*gravity;
-					velocity.y = min(velocity.y, 5)
+				if (velocity.y > 0 && OS.get_system_time_msecs() - last_jump_time > 60):
+					velocity.y = lerp(velocity.y, 0, wall_friction)
+					position += wall_velocity*delta
+					velocity.x += wall_direction*5
 	var going_down = velocity.y > 0;
 	velocity = move_and_slide(velocity, Vector2.UP)
 	if(get_floor_velocity().length() > 0):
@@ -63,6 +64,8 @@ func _unhandled_key_input(event):
 
 		
 func jump(mod=1):
+	last_jump_time = OS.get_system_time_msecs()
+	velocity = Vector2.ZERO;
 	print("Jump: " + str(OS.get_system_time_msecs()))
 	var jump_speed = 700*mod;
 	var jump_vel = jump_dir*jump_speed;
@@ -73,23 +76,23 @@ func jump(mod=1):
 		elif wall_direction == -1 and jump_dir.x < 0:
 			jump_vel *= -0.5;
 			jump_dir  *= -1;
-		else:
-			jump_vel += Vector2.RIGHT*-1*wall_direction*200;
-	if smp.get_param("on_floor") && jump_dir.y > 0:
-		jump_vel *= -0.5;
-		jump_dir  *= -1;
-		
-	if smp.current == "wall_slide":
-		jump_vel += Vector2.RIGHT*-1*wall_direction*500;
-	jump_vel.x *= 0.8
+#		position += Vector2.RIGHT*-1*wall_direction*10
+	
+	var angle = abs(round(rad2deg(jump_dir.angle_to(Vector2.UP))))
+	print(angle)
+	if wall_direction != 0 && (angle == 180 || angle == 0):
+		jump_vel.x += 200*wall_direction*-1
+		print("onwall")
 
-
+	if jump_vel.y > 0:
+		jump_vel.y *= 0.5;
 #	jump_vel.x *= 1.3
 	velocity += jump_vel
-	print(velocity.length());
 	position += jump_dir.normalized();
-	if(get_floor_velocity().y < 0):
-		position.y -= 5
+	if(get_floor_velocity().y < 0 || smp.get_param("on_floor")):
+		position.y -= 20
+	
+	
 	
 func die():
 	smp.set_trigger("die")
@@ -105,15 +108,15 @@ func _update_jump_direction():
 		using_joystick = false
 	else:
 		jump_dir = Vector2.UP
-	print(get_global_mouse_position().normalized().dot(last_mouse.normalized()));
 	if (!using_joystick):
 		jump_dir = get_global_mouse_position() - get_global_position();
 	last_mouse = (get_global_mouse_position() - get_global_position())
 	jump_mag = jump_dir.length()
 	jump_dir = jump_dir.normalized();
+	jump_dir = _clamp_8bit(jump_dir)
 	$JumpDotLong.position = jump_dir*70
-	if abs(1-Vector2.UP.dot(jump_dir)) < 0.01:
-		jump_dir = Vector2.UP;
+#	if abs(1-Vector2.UP.dot(jump_dir)) < 0.01:
+#		jump_dir = Vector2.UP;
 	$JumpDotLong2.position = jump_dir*70
 func _update_wall_direction():
 	var wall_velocity = Vector2.ZERO
@@ -127,13 +130,13 @@ func _update_wall_direction():
 		wall_direction = -int(is_near_wall_left) + int(is_near_wall_right)
 	smp.set_param("wall_direction", wall_direction)
 	
-	if (wall_direction == 0 && old_wall_direction != 0):
+	if ((wall_direction == 0 && old_wall_direction != 0) and OS.get_system_time_msecs() - last_jump_time > 60):
 		velocity.x += old_wall_direction*100;
 	
 	if (wall_direction != 0 && !_check_is_valid_wall($WallRaycasts/TopWallRaycasts)):
 		print("near top")
-		if(velocity.y < 5):
-			velocity += Vector2.UP*40
+		if(velocity.y < 0):
+			velocity += Vector2.UP*30
 			velocity.y = min(velocity.y, 450)
 			velocity.x = min(velocity.x, 300)
 
@@ -189,9 +192,36 @@ func _on_Music_beat(beat):
 	if beat % 4 == 3 || beat % 4 == 1:
 		smp.set_trigger("jump")
 		if smp.current == "falling" or smp.current == "jumping":
-			if(velocity.y > 0):
-				velocity.y *= 0.1
-				velocity.x *= 0.5
 			jump(0.5)
 		$JumpDotLong.scale = Vector2(1,1);
 		$Sprite/Beat.play("Beat")
+
+func _clamp_8bit(vec):
+	var clamp_vectors = _generate_vectors();
+	vec = vec.normalized();
+	var curDegree = rad2deg(vec.angle_to(Vector2.UP));
+	var closestDiff
+	var closestVec
+	for clamp_vec in clamp_vectors:
+		var diff = abs(curDegree - rad2deg(clamp_vec.angle_to(Vector2.UP)));
+		if not closestVec:
+			closestDiff = diff
+			closestVec = clamp_vec;
+		else:
+			if diff < closestDiff:
+				closestDiff = diff
+				closestVec = clamp_vec;
+	return closestVec;
+	
+func _generate_vectors(angle=22.5):
+	var vectors = [];
+	var curDegree = 0;
+	while curDegree < 360:
+		vectors.push_front(Vector2.UP.rotated(deg2rad(curDegree)));
+		curDegree += angle
+	return vectors;
+		
+#func snapTo(vec):
+#	var clamp_vectors = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT, Vector2(1,1), Vector2(-1,1), Vector2(1,-1), Vector2(-1,-1)];
+#	var angle = rad2deg(vec.angle_to(Vector2.UP));
+	

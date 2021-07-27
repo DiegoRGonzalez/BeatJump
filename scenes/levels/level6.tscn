@@ -997,28 +997,31 @@ polygon = PoolVector2Array( -208.448, -92.119, -989.099, -87.0642, -985.316, -12
 position = Vector2( -891.001, -752.036 )
 rotation = 3.12414
 shoot_dir = Vector2( 0, 1 )
-beat_offset = 2
+beat_offset = 3
 
 [node name="CrystalBall3" parent="." instance=ExtResource( 13 )]
 position = Vector2( -543.061, -587.143 )
 rotation = 3.15905
 shoot_dir = Vector2( 0, 1 )
-beat_offset = 2
+beat_offset = 3
 
 [node name="projectiles" type="Node" parent="."]
 
 [node name="CrystalBall4" parent="." instance=ExtResource( 13 )]
 position = Vector2( -721.943, -142.474 )
 shoot_dir = Vector2( 0, -1 )
+beat_offset = 1
 
 [node name="CrystalBall5" parent="." instance=ExtResource( 13 )]
 position = Vector2( -367.953, -143.268 )
 shoot_dir = Vector2( 0, -1 )
+beat_offset = 1
 
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Lava/DeathArea2D" to="." method="_on_DeathArea2D_body_entered"]
-[connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="CrystalBall4" method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="CrystalBall5" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="CrystalBall2" method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="CrystalBall3" method="_on_Music_beat"]
+[connection signal="beat" from="Music" to="CrystalBall2" method="_on_Music_beat"]
+[connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]
+[connection signal="beat" from="Music" to="." method="_on_Music_beat"]

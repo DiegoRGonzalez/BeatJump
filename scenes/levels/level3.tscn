@@ -1254,7 +1254,7 @@ material_overrides = {
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Castle/StaticBody2D5"]
 visible = false
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( -708.973, -179.396, -713.68, -418.83, -783.008, -478.636, -349.644, -475.323, -355.959, -195.421 )
+polygon = PoolVector2Array( -708.974, -179.396, -713.679, -418.83, -783.008, -478.636, -349.644, -475.323, -355.959, -195.421 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Castle"]
 position = Vector2( 150.803, -3.1748 )
@@ -1347,5 +1347,5 @@ material_overrides = {
 
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Lava/DeathArea2D" to="." method="_on_DeathArea2D_body_entered"]
-[connection signal="beat" from="Music" to="." method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]
+[connection signal="beat" from="Music" to="." method="_on_Music_beat"]

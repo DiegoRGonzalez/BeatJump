@@ -673,10 +673,12 @@ material_overrides = {
 
 [node name="CrystalBall" parent="." instance=ExtResource( 13 )]
 position = Vector2( -955.914, -32.2135 )
+beat_offset = 1
 
 [node name="projectiles" type="Node" parent="."]
 
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Lava/DeathArea2D" to="." method="_on_DeathArea2D_body_entered"]
+[connection signal="beat" from="Music" to="." method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="CrystalBall" method="_on_Music_beat"]
 [connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]

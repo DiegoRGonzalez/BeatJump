@@ -1,22 +1,22 @@
 extends RigidBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
+var shoot_dir = Vector2.UP;
+var speed = 800;
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+#func _ready():
+#	add_central_force(-shoot_dir*100)
+#	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_Missle_body_entered(body):
 	if "Player" in body.name:
 		body.die();
 	queue_free();
+
+
+func beat():
+	pass;
+	apply_impulse(Vector2(), shoot_dir*speed)

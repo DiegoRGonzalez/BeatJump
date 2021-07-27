@@ -50,3 +50,11 @@ func _on_DeathArea2D_body_entered(body):
 func _unhandled_key_input(event):
 	if Input.is_action_just_pressed("mute"):
 		$Music.mute("EDM","EDM")
+
+
+func _on_Music_beat(beat):
+	if(beat%4==1 || beat%4==3):
+		var projectiles = get_node("projectiles")
+		if projectiles:
+			for projectile in projectiles.get_children():
+				projectile.beat();

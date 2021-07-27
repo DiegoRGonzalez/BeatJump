@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/music/edm120.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/music/edm120 13kick.wav" type="AudioStream" id=1]
 [ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=2]
 [ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=3]
 [ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=4]
