@@ -1,0 +1,87 @@
+{
+	"events": [
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Its you! The wizard!"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh, uh, hi. Sorry I don't get too many visitors."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I've come to fight you!"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "And whys that?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You cursed me to jump along with that music!"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh, is my music too loud?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Huh?"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Im just listening to some music on my rooftop, I must have imbued it with some magic. Sorry about that!"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "How did you even think you were going to fight her? Jump at her?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Maybe. So can you fix this?"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Just go turn it off, its to the left."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Thats it?"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Ayup."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1627442001.json",
+		"name": "wizard"
+	}
+}

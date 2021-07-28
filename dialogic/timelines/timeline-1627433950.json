@@ -1,0 +1,63 @@
+{
+	"events": [
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Hey kid, you alright?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I .. Cant.. Stop.. Jumping!"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wow thats really something"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Whats happening to me? How can I stop this?!"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You know, in an ideal world, I'd have an answer to that first question of yours. Maybe some opening cinematic with a cute animation that could clear it all up. Alas.."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "... So what about how to stop it?"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Not sure, but why dont you try asking the wizard at the top of that tower over there?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wheres the tower?"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "You came from the left, you can only go right? Any Guess?"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1627433950.json",
+		"name": "FirstMeeting"
+	}
+}

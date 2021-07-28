@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=2]
+[gd_scene load_steps=141 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=2]
@@ -11,9 +11,10 @@
 [ext_resource path="res://scenes/common/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/terrain/castle_top_right.png" type="Texture" id=10]
 [ext_resource path="res://assets/terrain/castle_top_center.png" type="Texture" id=11]
-[ext_resource path="res://scenes/common/Music.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/levels/Tileset.tres" type="TileSet" id=12]
 [ext_resource path="res://scenes/Entities/CrystalBall.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/levels/level7.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/common/Exit.gd" type="Script" id=15]
 [ext_resource path="res://scenes/levels/baselevel.gd" type="Script" id=16]
 [ext_resource path="res://assets/terrain/castle_allaround.png" type="Texture" id=17]
 [ext_resource path="res://assets/GameDevAssets/platformerGraphicsDeluxe_Updated/Tiles/liquidLava.png" type="Texture" id=18]
@@ -886,6 +887,8 @@ __meta__ = {
 position = Vector2( -179.446, -679.493 )
 z_index = -4
 texture = ExtResource( 21 )
+script = ExtResource( 15 )
+current_level = 6
 
 [node name="Area2D" type="Area2D" parent="Exit"]
 __meta__ = {
@@ -991,8 +994,6 @@ visible = false
 modulate = Color( 1, 1, 1, 0.3 )
 polygon = PoolVector2Array( -208.448, -92.119, -989.099, -87.0642, -985.316, -125.368, -988.124, -797.295, -1001.3, -1573.35, -75.9885, -1598.33, -96.7626, -804.697, -89.7324, -770.693, -926.188, -763.236, -922.511, -131.334, -845.808, -130.945, -844.804, -191.233, -783.756, -192.445, -784.545, -131.08, -662.519, -132.83, -662.352, -526.483, -593.179, -525.907, -588.744, -132.669, -502.152, -133.871, -502.159, -194.363, -424.045, -194.824, -424.816, -132.864, -318.262, -134.381, -316.624, -528.605, -203.231, -529.198 )
 
-[node name="Music" parent="." instance=ExtResource( 12 )]
-
 [node name="CrystalBall2" parent="." instance=ExtResource( 13 )]
 position = Vector2( -891.001, -752.036 )
 rotation = 3.12414
@@ -1017,11 +1018,13 @@ position = Vector2( -367.953, -143.268 )
 shoot_dir = Vector2( 0, -1 )
 beat_offset = 1
 
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+z_index = -3
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 4, 4 )
+format = 1
+tile_data = PoolIntArray( -5111924, 536870912, 1, -4522027, 0, 1, -3145814, 0, 1, -2162748, 536870912, 2, -2097256, 536870912, 2, -1835062, 536870912, 1 )
+
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Lava/DeathArea2D" to="." method="_on_DeathArea2D_body_entered"]
-[connection signal="beat" from="Music" to="CrystalBall4" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="CrystalBall5" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="CrystalBall3" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="CrystalBall2" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]
-[connection signal="beat" from="Music" to="." method="_on_Music_beat"]

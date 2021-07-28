@@ -15,6 +15,7 @@ var curBeat = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.music.connect("beat", self, "_on_Music_beat")
 	pass # Replace with function body.
 
 

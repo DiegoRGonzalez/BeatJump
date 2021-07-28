@@ -13,6 +13,7 @@ var jump_mag;
 var jump_dir;
 var falling_count = 0;
 var floor_normal = Vector2.UP;
+var talking = false;
 
 var using_joystick = false;
 var last_jump_time = OS.get_system_time_msecs()
@@ -20,6 +21,9 @@ var last_jump_time = OS.get_system_time_msecs()
 var last_mouse = Vector2.ZERO;
 
 func _ready():
+	Global.player = self;
+	$Sprite.position = Vector2.ZERO;
+	$Sprite.z_index = 0;
 	$WallRaycasts/LeftWallRaycasts/RayCast2D.add_exception(self)
 	$WallRaycasts/LeftWallRaycasts/RayCast2D2.add_exception(self)
 	$WallRaycasts/RightWallRaycasts/RayCast2D.add_exception(self)
@@ -28,6 +32,7 @@ func _ready():
 	$FloorRaycasts/RayCast2D2.add_exception(self)
 	smp.connect("updated", self, "_on_StateMachinePlayer_updated")
 	smp.connect("transited", self, "_on_StateMachine_transited")
+	Global.music.connect("beat", self, "_on_Music_beat")
 
 
 func _physics_process(delta):
@@ -44,16 +49,24 @@ func _physics_process(delta):
 				$Sprite.rotation = 0
 			"wall_slide":
 				$Sprite.flip_h = (wall_direction == -1)
+				# Wall Friction
 				if (velocity.y > 0 && OS.get_system_time_msecs() - last_jump_time > 60):
 					velocity.y = lerp(velocity.y, 0, wall_friction)
 					position += wall_velocity*delta
 					velocity.x += wall_direction*5
+			"die":
+				velocity = Vector2.ZERO;
 	var going_down = velocity.y > 0;
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
 	if(get_floor_velocity().length() > 0):
 		position += get_floor_velocity()*delta;
+	
+	# Floor Friction
 	if _check_is_valid_floor($FloorRaycasts) && going_down:
 		velocity.x = lerp(velocity.x, 0, friction);
+	
+	# On Floor
 	smp.set_param("on_floor", _check_is_valid_floor($FloorRaycasts))
 		
 
@@ -79,7 +92,6 @@ func jump(mod=1):
 #		position += Vector2.RIGHT*-1*wall_direction*10
 	
 	var angle = abs(round(rad2deg(jump_dir.angle_to(Vector2.UP))))
-	print(angle)
 	if wall_direction != 0 && (angle == 180 || angle == 0):
 		jump_vel.x += 200*wall_direction*-1
 		print("onwall")
@@ -92,11 +104,14 @@ func jump(mod=1):
 	if(get_floor_velocity().y < 0 || smp.get_param("on_floor")):
 		position.y -= 20
 	
-	
-	
 func die():
 	smp.set_trigger("die")
+	$Sprite.z_index = 10;
 	
+func talk_crow():
+	talking = true;
+	velocity = Vector2.ZERO;
+
 func _update_jump_direction():
 	var joystick;
 	if Input.get_connected_joypads().size() > 0:
@@ -118,6 +133,8 @@ func _update_jump_direction():
 #	if abs(1-Vector2.UP.dot(jump_dir)) < 0.01:
 #		jump_dir = Vector2.UP;
 	$JumpDotLong2.position = jump_dir*70
+	
+
 func _update_wall_direction():
 	var wall_velocity = Vector2.ZERO
 	var is_near_wall_left = _check_is_valid_wall($WallRaycasts/LeftWallRaycasts)
@@ -160,7 +177,9 @@ func _check_is_valid_floor(floor_raycasts=$FloorRaycasts):
 				return true;
 	return false;
 			
-
+			
+func dialog_end(signal_type):
+	talking = false;
 
 func _on_StateMachinePlayer_updated(state, delta):
 	match state:
@@ -184,8 +203,8 @@ func _on_StateMachinePlayer_updated(state, delta):
 func _on_StateMachine_transited(from, to):
 	match to:
 		"die":
+			velocity = Vector2.ZERO;
 			velocity += Vector2.UP*20;
-			get_parent()._fade_out();
 	pass;
 
 func _on_Music_beat(beat):
@@ -213,15 +232,32 @@ func _clamp_8bit(vec):
 				closestVec = clamp_vec;
 	return closestVec;
 	
-func _generate_vectors(angle=22.5):
+func _generate_vectors(angle=10):
+	if talking:
+		return [Vector2.UP];
 	var vectors = [];
 	var curDegree = 0;
+	var exclusion_vector;
+	if smp.get_param("on_floor"):
+		exclusion_vector = Vector2.DOWN;
+	elif wall_direction == -1:
+		exclusion_vector = Vector2.LEFT;
+	elif wall_direction == 1:		
+		exclusion_vector = Vector2.RIGHT;
 	while curDegree < 360:
-		vectors.push_front(Vector2.UP.rotated(deg2rad(curDegree)));
+		var add_vector = true;
+		var vector_to_add = Vector2.UP.rotated(deg2rad(curDegree));
+		if (exclusion_vector):
+			if (exclusion_vector.dot(vector_to_add) > 0):
+				add_vector = false;
+		if (add_vector):
+			vectors.push_front(vector_to_add);
 		curDegree += angle
 	return vectors;
-		
-#func snapTo(vec):
-#	var clamp_vectors = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT, Vector2(1,1), Vector2(-1,1), Vector2(1,-1), Vector2(-1,-1)];
-#	var angle = rad2deg(vec.angle_to(Vector2.UP));
 	
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if (anim_name == "die"):
+		get_parent()._fade_out();
+	pass # Replace with function body.

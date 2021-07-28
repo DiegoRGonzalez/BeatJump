@@ -1,0 +1,39 @@
+{
+	"events": [
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This place is a real mess"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Yeah, it used to look nicer, but the wizard hasn't really been down in a while and its all started to fall apart."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " Yeah thankfully I took a few parkour courses back at my liberal arts college where we did a lot of dan-"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "That amount of exposition really isn't necessary. We get it, you can jump."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": ".. jerk"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1627436096.json",
+		"name": "SecondMeeting"
+	}
+}

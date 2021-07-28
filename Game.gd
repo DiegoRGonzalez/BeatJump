@@ -24,6 +24,7 @@ func setup_level(reload=false):
 		var next_level = app_state.get_param("game/next_level")
 		if reload:
 			current_level_instance = current_level_scene.instance()
+			current_level_instance.reload();
 		elif next_level:
 			current_level_instance = next_level.instance()
 			current_level_scene = next_level

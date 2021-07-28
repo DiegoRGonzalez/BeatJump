@@ -13,6 +13,9 @@ var end = false;
 func _on_Area2D_body_entered(body):
 	if body is Player:
 		if app_state:
+			if $Exit.current_level > Global.furthestCompleted:
+				Global.furthestCompleted = $Exit.current_level
+				Global.save();
 			if(last_scene):
 				app_state.set_param("game/End/win", true)
 				app_state.set_trigger("game_end")
@@ -22,6 +25,7 @@ func _on_Area2D_body_entered(body):
 				end = true;
 
 func _ready():
+	Global.music.connect("beat", self, "_on_Music_beat")
 	end = false;
 	$Fade.visible = true;
 #	$MusicBox.mute(0,0)
@@ -41,16 +45,15 @@ func _fade_out():
 		for i in range(active_projectiles.size()):
 			active_projectiles[i].queue_free();
 	end = true;
-	$Music.stop_all();
 
 func _on_DeathArea2D_body_entered(body):
 	if body is Player:
 		body.die();
 
-func _unhandled_key_input(event):
-	if Input.is_action_just_pressed("mute"):
-		$Music.mute("EDM","EDM")
-
+func reload():
+	var crow = $Crow;
+	if crow:
+		crow.started = true;
 
 func _on_Music_beat(beat):
 	if(beat%4==1 || beat%4==3):

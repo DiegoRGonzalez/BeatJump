@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=2]
+[gd_scene load_steps=164 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://scenes/common/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/terrain/castle_top_right.png" type="Texture" id=10]
 [ext_resource path="res://assets/terrain/castle_top_center.png" type="Texture" id=11]
-[ext_resource path="res://scenes/common/Music.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/levels/Tileset.tres" type="TileSet" id=12]
+[ext_resource path="res://scenes/common/Exit.gd" type="Script" id=13]
 [ext_resource path="res://scenes/levels/baselevel.gd" type="Script" id=16]
 [ext_resource path="res://assets/terrain/castle_allaround.png" type="Texture" id=17]
 [ext_resource path="res://assets/GameDevAssets/platformerGraphicsDeluxe_Updated/Tiles/liquidLava.png" type="Texture" id=18]
@@ -1060,6 +1061,8 @@ __meta__ = {
 position = Vector2( 271.162, -635.803 )
 z_index = -4
 texture = ExtResource( 21 )
+script = ExtResource( 13 )
+current_level = 2
 
 [node name="Area2D" type="Area2D" parent="Exit"]
 __meta__ = {
@@ -1200,8 +1203,13 @@ visible = false
 modulate = Color( 1, 1, 1, 0.3 )
 polygon = PoolVector2Array( -221.253, 40.6715, -320.602, -99.9559, -357.798, -180.773, -274.574, -108.573, -229.085, -93.6183, -197.911, -97.4853, -196.171, -9.83923, -159.956, -2.91464, 304.478, 2.43887, 387.342, -7.74704, 395.401, -91.1701, 451.262, -94.8143, 534.03, -141.64, 596.134, -189.553, 499.358, 18.4928, 301.705, 191.262, 211.474, 987.549, -65.3287, 995.259, -127.129, 166.416 )
 
-[node name="Music" parent="." instance=ExtResource( 12 )]
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+z_index = -3
+tile_set = ExtResource( 12 )
+cell_size = Vector2( 4, 4 )
+format = 1
+tile_data = PoolIntArray( -4325345, 1, 1, -4063231, 536870912, 1, -786457, 536870912, 1, -851923, 0, 1, -786387, 0, 1 )
 
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Lava/DeathArea2D" to="." method="_on_DeathArea2D_body_entered"]
-[connection signal="beat" from="Music" to="Player" method="_on_Music_beat"]

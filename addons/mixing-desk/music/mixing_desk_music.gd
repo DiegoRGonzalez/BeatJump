@@ -13,7 +13,7 @@ export(NodePath) var autoplay_song
 
 onready var songs = get_children()
 
-const default_vol = 0
+var default_vol = -10
 
 var ref_track : Object
 var playing_tracks = []
@@ -44,6 +44,7 @@ signal shuffle
 signal song_changed
 
 func _ready():
+	Global.music = self;
 	for i in songs:
 		if i.ignore:
 			songs.remove(songs.find(i))
@@ -505,3 +506,6 @@ func shuffle_songs():
 	emit_signal("shuffle", [current_song_num, get_node(song).get_index()])
 	new_song = get_node(song).get_index()
 	_change_song(song)
+	
+func set_volume(volume):
+	default_vol = volume;

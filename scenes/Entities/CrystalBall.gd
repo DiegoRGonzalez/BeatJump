@@ -8,6 +8,7 @@ export(int) var beat_offset = 0;
 var bullet_speed = 800;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.music.connect("beat", self, "_on_Music_beat")	
 	pass # Replace with function body.
 
 func fire():
@@ -15,7 +16,11 @@ func fire():
 	missle_instance.position = get_global_position()
 	missle_instance.shoot_dir = shoot_dir;
 	missle_instance.apply_impulse(Vector2(), shoot_dir*bullet_speed)
-	get_tree().get_root().find_node("projectiles", true, false).call_deferred("add_child", missle_instance)
+	var tree = get_tree();
+	if tree:
+		var root = tree.get_root();
+		if root:
+			root.find_node("projectiles", true, false).call_deferred("add_child", missle_instance)
 	
 
 

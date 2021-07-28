@@ -1,0 +1,49 @@
+{
+	"events": [
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " Hey, hows the climb?"
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " Pretty good! "
+		},
+		{
+			"event_id": "dialogic_023",
+			"wait_seconds": 0.2
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Wait, whats that to my left."
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Oh those are some crystal balls shooting condensed magical energy that's attuned to the music surrounding us."
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "But why?"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": " If you thought I'd have a good answer, you're a real poor judge of character."
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1627436281.json",
+		"name": "ThirdMeeting"
+	}
+}
