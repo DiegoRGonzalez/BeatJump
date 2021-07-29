@@ -11,7 +11,8 @@ export(int) var move_period = 16
 export(int) var speed = 300;
 
 var curBeat = 0;
-
+var startBeat;
+var started = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +23,7 @@ func _ready():
 
 func _process(delta):
 	tick+=1;
-	if moving:
+	if moving and started:
 		if curBeat%move_period >= move_period/2:
 			$StaticBody2D.position += moveDirection*speed*delta
 			$StaticBody2D.constant_linear_velocity = 1*moveDirection*speed
@@ -33,4 +34,8 @@ func _process(delta):
 
 
 func _on_Music_beat(beat):
-	curBeat = beat;
+	if not started:
+		startBeat = beat;
+		beat = 2;
+		started = true;
+	curBeat += 1;

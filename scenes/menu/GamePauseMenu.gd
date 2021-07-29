@@ -4,7 +4,7 @@ var app_state;
 
 
 func _ready():
-	Global.music.set_volume(-100)
+	pass;
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -13,15 +13,16 @@ func _unhandled_key_input(event):
 			app_state.set_trigger("continue")
 
 
+func _process(delta):
+	Global.volume = $HSlider.value;
+
 func _on_quit_pressed():
 	if app_state:
 		get_tree().paused = false
 		app_state.set_trigger("quit")
-		Global.music.set_volume(-10)
 
 
 func _on_continue_pressed():
 	if app_state:
 		get_tree().paused = false
 		app_state.set_trigger("continue")
-		Global.music.set_volume(-10)

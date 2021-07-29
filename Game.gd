@@ -48,6 +48,8 @@ func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if app_state:
 			app_state.set_trigger("pause")
+	if event.is_action_pressed("mute"):
+		Global.muted = !Global.muted;
 
 func _on_AppState_transited(from, to):
 	# Create StateDirectory to handle nested state better, not required for simple state machine

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var smp = $StateMachinePlayer
 
-var friction = 0.3;
+var friction = 0.8;
 var wall_friction = 0.8
 var acceleration = 1;
 var velocity = Vector2.ZERO
@@ -80,21 +80,24 @@ func jump(mod=1):
 	last_jump_time = OS.get_system_time_msecs()
 	velocity = Vector2.ZERO;
 	print("Jump: " + str(OS.get_system_time_msecs()))
+	if wall_direction != 0:
+		if !_check_is_valid_wall($WallRaycasts/TopWallRaycasts):
+			print("boostin")
+		elif (wall_direction == 1 and jump_dir.x > 0) or (wall_direction == -1 and jump_dir.x < 0):
+			jump_dir.x *= -1
+
+	var angle = abs(round(rad2deg(jump_dir.angle_to(Vector2.UP))))
+	
 	var jump_speed = 700*mod;
 	var jump_vel = jump_dir*jump_speed;
-	if wall_direction != 0:
-		if wall_direction == 1 and jump_dir.x > 0:
-			jump_vel *= -0.5;
-			jump_dir  *= -1;
-		elif wall_direction == -1 and jump_dir.x < 0:
-			jump_vel *= -0.5;
-			jump_dir  *= -1;
-#		position += Vector2.RIGHT*-1*wall_direction*10
 	
-	var angle = abs(round(rad2deg(jump_dir.angle_to(Vector2.UP))))
-	if wall_direction != 0 && (angle == 180 || angle == 0):
-		jump_vel.x += 200*wall_direction*-1
-		print("onwall")
+	if smp.get_param("on_floor") and angle > 90:
+		jump_vel *= -0.5;
+		jump_dir *=  -1;
+	
+	if (angle == 180 || angle == 0) and wall_direction != 0:
+		jump_vel += -wall_direction*Vector2.RIGHT*50
+		jump_dir = jump_vel.normalized();
 
 	if jump_vel.y > 0:
 		jump_vel.y *= 0.5;
@@ -148,11 +151,11 @@ func _update_wall_direction():
 	smp.set_param("wall_direction", wall_direction)
 	
 	if ((wall_direction == 0 && old_wall_direction != 0) and OS.get_system_time_msecs() - last_jump_time > 60):
-		velocity.x += old_wall_direction*100;
+		velocity.x += old_wall_direction*20;
 	
 	if (wall_direction != 0 && !_check_is_valid_wall($WallRaycasts/TopWallRaycasts)):
 		print("near top")
-		if(velocity.y < 0):
+		if(velocity.y < 5):
 			velocity += Vector2.UP*30
 			velocity.y = min(velocity.y, 450)
 			velocity.x = min(velocity.x, 300)
@@ -232,26 +235,15 @@ func _clamp_8bit(vec):
 				closestVec = clamp_vec;
 	return closestVec;
 	
-func _generate_vectors(angle=10):
+func _generate_vectors(angle=5):
 	if talking:
 		return [Vector2.UP];
 	var vectors = [];
 	var curDegree = 0;
-	var exclusion_vector;
-	if smp.get_param("on_floor"):
-		exclusion_vector = Vector2.DOWN;
-	elif wall_direction == -1:
-		exclusion_vector = Vector2.LEFT;
-	elif wall_direction == 1:		
-		exclusion_vector = Vector2.RIGHT;
 	while curDegree < 360:
-		var add_vector = true;
+
 		var vector_to_add = Vector2.UP.rotated(deg2rad(curDegree));
-		if (exclusion_vector):
-			if (exclusion_vector.dot(vector_to_add) > 0):
-				add_vector = false;
-		if (add_vector):
-			vectors.push_front(vector_to_add);
+		vectors.push_front(vector_to_add);
 		curDegree += angle
 	return vectors;
 	

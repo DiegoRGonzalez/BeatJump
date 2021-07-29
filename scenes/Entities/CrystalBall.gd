@@ -5,7 +5,7 @@ var missle = preload("res://scenes/Entities/Missle.tscn")
 
 export(Vector2) var shoot_dir = Vector2.RIGHT
 export(int) var beat_offset = 0;
-var bullet_speed = 800;
+var bullet_speed = 1200;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.music.connect("beat", self, "_on_Music_beat")	
@@ -15,6 +15,7 @@ func fire():
 	var missle_instance = missle.instance()
 	missle_instance.position = get_global_position()
 	missle_instance.shoot_dir = shoot_dir;
+	missle_instance.speed = bullet_speed;
 	missle_instance.apply_impulse(Vector2(), shoot_dir*bullet_speed)
 	var tree = get_tree();
 	if tree:

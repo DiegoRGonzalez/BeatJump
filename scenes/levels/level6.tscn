@@ -938,7 +938,7 @@ __meta__ = {
 }
 
 [node name="entrance" type="Sprite" parent="."]
-position = Vector2( -838.183, -26.4824 )
+position = Vector2( -291.183, -24.4824 )
 z_index = -4
 texture = ExtResource( 21 )
 
@@ -998,25 +998,25 @@ polygon = PoolVector2Array( -208.448, -92.119, -989.099, -87.0642, -985.316, -12
 position = Vector2( -891.001, -752.036 )
 rotation = 3.12414
 shoot_dir = Vector2( 0, 1 )
-beat_offset = 3
+beat_offset = 2
 
 [node name="CrystalBall3" parent="." instance=ExtResource( 13 )]
 position = Vector2( -543.061, -587.143 )
 rotation = 3.15905
 shoot_dir = Vector2( 0, 1 )
-beat_offset = 3
+beat_offset = 2
 
 [node name="projectiles" type="Node" parent="."]
 
 [node name="CrystalBall4" parent="." instance=ExtResource( 13 )]
 position = Vector2( -721.943, -142.474 )
 shoot_dir = Vector2( 0, -1 )
-beat_offset = 1
+beat_offset = 2
 
 [node name="CrystalBall5" parent="." instance=ExtResource( 13 )]
 position = Vector2( -367.953, -143.268 )
 shoot_dir = Vector2( 0, -1 )
-beat_offset = 1
+beat_offset = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

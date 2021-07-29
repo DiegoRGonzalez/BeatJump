@@ -1077,7 +1077,7 @@ __meta__ = {
 
 [node name="Lava" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 63.3204, 510.166 )
+position = Vector2( 63.3204, 164.166 )
 scale = Vector2( 91.0013, 3.81305 )
 z_index = -5
 texture = ExtResource( 18 )

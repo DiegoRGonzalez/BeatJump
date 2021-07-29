@@ -56,7 +56,7 @@ func reload():
 		crow.started = true;
 
 func _on_Music_beat(beat):
-	if(beat%4==1 || beat%4==3):
+	if(beat%4==2 || beat%4==0):
 		var projectiles = get_node("projectiles")
 		if projectiles:
 			for projectile in projectiles.get_children():

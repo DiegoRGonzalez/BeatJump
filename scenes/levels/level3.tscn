@@ -1153,7 +1153,7 @@ __meta__ = {
 
 [node name="Lava" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 63.3204, 510.166 )
+position = Vector2( 63.3204, 294.166 )
 scale = Vector2( 91.0013, 3.81305 )
 z_index = -5
 texture = ExtResource( 18 )
@@ -1328,7 +1328,7 @@ format = 1
 tile_data = PoolIntArray( -6094898, 536870913, 1, -4849674, 536870912, 2, -4587513, 0, 1, -2883676, 536870912, 2, -2818084, 536870912, 1, -2293725, 0, 1, -1769564, 536870912, 2 )
 
 [node name="Crow" parent="." instance=ExtResource( 14 )]
-position = Vector2( -874.739, -434.455 )
+position = Vector2( -64.3214, -22.5113 )
 dialog = "SecondMeeting"
 
 [connection signal="body_entered" from="Exit/Area2D" to="." method="_on_Area2D_body_entered"]

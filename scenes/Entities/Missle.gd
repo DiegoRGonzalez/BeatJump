@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 var shoot_dir = Vector2.UP;
-var speed = 800;
+var speed = 1600;
 
 func _on_Missle_body_entered(body):
 	if "Player" in body.name:
@@ -11,5 +11,4 @@ func _on_Missle_body_entered(body):
 
 
 func beat():
-	pass;
 	apply_impulse(Vector2(), shoot_dir*speed)

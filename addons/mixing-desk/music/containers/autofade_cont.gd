@@ -1,6 +1,6 @@
 extends Node
 
-var cont = "autofade"
+var cont = "core"
 enum play_type {random, all}
 export(play_type) var play_style
 export var toggle : bool = false

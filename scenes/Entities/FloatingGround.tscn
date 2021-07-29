@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/terrain/grass_top_center.png" type="Texture" id=12]
 [ext_resource path="res://assets/terrain/grass_top_right.png" type="Texture" id=13]
 
-[sub_resource type="Resource" id=54]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
 textures = [ ExtResource( 12 ) ]
 texture_normals = [  ]
@@ -29,23 +29,23 @@ texture_normals_taper_right = [  ]
 use_corner_texture = true
 use_taper_texture = true
 
-[sub_resource type="Resource" id=55]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 3 )
 begin = 45.0
 end = 135.0
 
-[sub_resource type="Resource" id=56]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
-edge_material = SubResource( 54 )
-normal_range = SubResource( 55 )
+edge_material = SubResource( 1 )
+normal_range = SubResource( 2 )
 weld = true
 render = true
 z_index = 0
 offset = 0.0
 
-[sub_resource type="Resource" id=57]
+[sub_resource type="Resource" id=4]
 script = ExtResource( 4 )
-_edge_meta_materials = [ SubResource( 56 ) ]
+_edge_meta_materials = [ SubResource( 3 ) ]
 fill_textures = [ ExtResource( 10 ) ]
 fill_texture_normals = [  ]
 fill_texture_z_index = 11
@@ -158,7 +158,7 @@ position = Vector2( -63.0372, 279.746 )
 script = ExtResource( 7 )
 tessellation_stages = 4
 collision_polygon_node_path = NodePath("../CollisionPolygon2D")
-shape_material = SubResource( 57 )
+shape_material = SubResource( 4 )
 _points = SubResource( 17 )
 material_overrides = {
 }

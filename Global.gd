@@ -3,7 +3,8 @@ extends Node
 var music
 var player
 var furthestCompleted = 0;
-
+var muted = false;
+var volume = 1;
 
 func save():
 	var save_dict = {

@@ -1751,8 +1751,8 @@ __meta__ = {
 
 [node name="Lava" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( -676.663, 1133.5 )
-scale = Vector2( 91.0013, 3.81305 )
+position = Vector2( -676.663, 732.399 )
+scale = Vector2( 91.0013, 14.8159 )
 z_index = -5
 texture = ExtResource( 18 )
 
@@ -2017,16 +2017,19 @@ polygon = PoolVector2Array( -928.232, -564.002, -983.605, -380.552, -1663.09, -3
 [node name="CrystalBall" parent="." instance=ExtResource( 25 )]
 position = Vector2( -62.5218, -388.089 )
 shoot_dir = Vector2( -1, 0 )
+beat_offset = 2
 
 [node name="projectiles" type="Node" parent="."]
 
 [node name="CrystalBall2" parent="." instance=ExtResource( 25 )]
 position = Vector2( -209.957, -820.95 )
 shoot_dir = Vector2( -1, 0 )
+beat_offset = 2
 
 [node name="CrystalBall3" parent="." instance=ExtResource( 25 )]
 position = Vector2( -236.909, -1465.06 )
 shoot_dir = Vector2( -1, 0 )
+beat_offset = 2
 
 [node name="FloatingGround4" type="Node2D" parent="."]
 position = Vector2( 411.523, -1102.51 )

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Stage3-120bpm-4beats-64bars.wav-5dd5238c8a9c2ce94b998158e43c3c95.sample"
+
+[deps]
+
+source_file="res://assets/music/Stage3-120bpm-4beats-64bars.wav"
+dest_files=[ "res://.import/Stage3-120bpm-4beats-64bars.wav-5dd5238c8a9c2ce94b998158e43c3c95.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -9,4 +9,4 @@ pause_mode = 2
 script = ExtResource( 1 )
 pause_menu_scn = ExtResource( 2 )
 
-[node name="Music" parent="." instance=ExtResource( 3 )]
+[node name="MixingDeskMusic" parent="." instance=ExtResource( 3 )]
