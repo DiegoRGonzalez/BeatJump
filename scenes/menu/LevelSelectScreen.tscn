@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/levels/level9.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/terrain/castle_gray_fill.png" type="Texture" id=12]
 [ext_resource path="res://scenes/levels/level10.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -28,22 +29,20 @@ font_data = SubResource( 2 )
 
 [sub_resource type="Theme" id=4]
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="DynamicFontData" id=6]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://assets/fonts/mayor/Mayor-Italic.ttf"
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 30
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 6 )
+font_data = SubResource( 7 )
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=9]
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=10]
 size = 30
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -121,9 +120,11 @@ margin_top = 173.0
 margin_right = 385.0
 margin_bottom = 198.0
 theme = SubResource( 4 )
-custom_styles/disabled = SubResource( 10 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "1. Outside The CAstle"
 align = 0
 __meta__ = {
@@ -135,8 +136,11 @@ margin_left = 54.5925
 margin_top = 217.005
 margin_right = 321.592
 margin_bottom = 251.005
-custom_styles/normal = SubResource( 8 )
-custom_fonts/font = SubResource( 9 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 text = "2. Castle Beginings"
 align = 0
 __meta__ = {
@@ -149,8 +153,11 @@ margin_top = 261.101
 margin_right = 385.794
 margin_bottom = 286.101
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "3. Floating Pillars"
 align = 0
 __meta__ = {
@@ -163,8 +170,11 @@ margin_top = 304.18
 margin_right = 385.841
 margin_bottom = 329.18
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "4. Wall Jumping on the ceiling"
 align = 0
 __meta__ = {
@@ -177,8 +187,11 @@ margin_top = 346.225
 margin_right = 540.841
 margin_bottom = 371.225
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "5. Magic Fights Back"
 align = 0
 __meta__ = {
@@ -191,8 +204,11 @@ margin_top = 389.951
 margin_right = 540.0
 margin_bottom = 414.951
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "6. Cranking up the heat"
 align = 0
 __meta__ = {
@@ -205,8 +221,11 @@ margin_top = 429.473
 margin_right = 539.159
 margin_bottom = 454.473
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "7. Outside the box"
 align = 0
 __meta__ = {
@@ -219,8 +238,11 @@ margin_top = 465.631
 margin_right = 535.795
 margin_bottom = 490.631
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "8. The Dynamic Elevator"
 align = 0
 __meta__ = {
@@ -233,8 +255,11 @@ margin_top = 502.631
 margin_right = 533.273
 margin_bottom = 527.631
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "9. A Final Push"
 align = 0
 __meta__ = {
@@ -247,8 +272,11 @@ margin_top = 544.676
 margin_right = 532.432
 margin_bottom = 569.676
 theme = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 7 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "10. The Wizard"
 align = 0
 __meta__ = {

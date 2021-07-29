@@ -43,6 +43,14 @@ func setup_level(reload=false):
 		if current_level_instance:
 			current_level_instance.set("app_state", app_state)
 			add_child(current_level_instance)
+			
+func _process(delta):
+	if Global.muted:
+		$canvas/Muted.visible = true;
+		$canvas/NotMuted.visible = false;
+	else:
+		$canvas/NotMuted.visible = true;
+		$canvas/Muted.visible = false;
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):

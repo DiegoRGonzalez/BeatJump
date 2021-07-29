@@ -172,7 +172,7 @@ _global_script_class_icons={
 
 config/name="BeatJump"
 run/main_scene="res://scenes/menu/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/GameDevAssets/Icon.png"
 
 [autoload]
 

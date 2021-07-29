@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/mayor/Mayor-Italic.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/terrain/castle_gray_fill.png" type="Texture" id=3]
+[ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -87,10 +88,13 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="PanelContainer/Control2"]
-margin_left = 521.288
-margin_top = 377.332
-margin_right = 609.288
-margin_bottom = 411.332
+margin_left = 521.0
+margin_top = 377.0
+margin_right = 592.0
+margin_bottom = 411.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = SubResource( 5 )
 text = "Quit"
@@ -105,6 +109,9 @@ margin_top = 378.269
 margin_right = 467.35
 margin_bottom = 409.269
 theme = SubResource( 6 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = SubResource( 7 )
 custom_fonts/font = SubResource( 9 )
 text = "Start Game"

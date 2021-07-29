@@ -21,6 +21,7 @@ var last_jump_time = OS.get_system_time_msecs()
 var last_mouse = Vector2.ZERO;
 
 func _ready():
+	Global.camera = $Camera2D
 	Global.player = self;
 	$Sprite.position = Vector2.ZERO;
 	$Sprite.z_index = 0;
@@ -77,6 +78,8 @@ func _unhandled_key_input(event):
 
 		
 func jump(mod=1):
+	if Global.paused:
+		return;
 	last_jump_time = OS.get_system_time_msecs()
 	velocity = Vector2.ZERO;
 	print("Jump: " + str(OS.get_system_time_msecs()))
