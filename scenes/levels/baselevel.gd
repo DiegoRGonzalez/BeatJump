@@ -91,3 +91,12 @@ func _on_Music_beat(beat):
 		if projectiles:
 			for projectile in projectiles.get_children():
 				projectile.beat();
+
+func handle_dialog(signal_d):
+	match signal_d:
+		"end":
+			app_state.set_param("game/End/win", true)
+			app_state.set_trigger("game_end")
+			Global.music.quickplay("Song2")
+			end = true;
+			Global.show_beat = false;

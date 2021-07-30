@@ -35,4 +35,7 @@ func _on_EndArea_body_entered(body):
 	Global.player.end = true;
 	Global.music_box.playsound("sigh")
 	get_parent().slow_fadeout();
+	var platforms = get_parent().get_node("FloatingGrounds").get_children();
+	for plat in platforms:
+		plat.falling = true;
 	pass # Replace with function body.

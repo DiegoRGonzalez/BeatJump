@@ -7,6 +7,7 @@ var wall_friction = 0.8
 var acceleration = 1;
 var velocity = Vector2.ZERO
 var gravity = Vector2.DOWN * 25.0
+var default_gravity = gravity;
 var wall_direction = 0;
 var wall_velocity = Vector2.ZERO;
 var jump_mag;
@@ -198,6 +199,7 @@ func _check_is_valid_floor(floor_raycasts=$FloorRaycasts):
 			
 func dialog_end(signal_type):
 	talking = false;
+	Global.show_beat = true;
 
 func _on_StateMachinePlayer_updated(state, delta):
 	match state:
@@ -271,7 +273,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		get_parent()._fade_out();
 	pass # Replace with function body.
 	
-	
+func handle_dialog(signal_d):
+	print(signal_d)
+	match signal_d:
+		"left":
+			_turn_left();
+		"right":
+			_turn_right();
+		"float":
+			_float_up();
+		"throw":
+			_throw();
 	
 # Dialog events:
 func _turn_left():
@@ -282,4 +294,11 @@ func _turn_right():
 	
 	
 func _float_up():
-	gravity *= -0.2;
+	gravity *= -0.01;
+	$Trail2D.visible = false;
+	$MagicTrail.emitting = true;
+	
+func _throw():
+	jump_dir = Vector2(-1,-0.5);
+	gravity = default_gravity;
+	jump();

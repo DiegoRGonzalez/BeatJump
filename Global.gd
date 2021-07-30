@@ -8,6 +8,7 @@ var volume = 1;
 var paused = false;
 var camera;
 var music_box;
+var show_beat = true;
 
 func save():
 	var save_dict = {

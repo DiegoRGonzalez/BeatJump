@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://scenes/common/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/GameDevAssets/boy.png" type="Texture" id=2]
@@ -579,6 +579,10 @@ tracks/0/keys = {
 [sub_resource type="Curve" id=59]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="Gradient" id=60]
+offsets = PoolRealArray( 0, 0.577265, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 4.00986 )
 rotation = 6.28319
@@ -697,5 +701,13 @@ script = ExtResource( 13 )
 lifetime = 0.2
 distance = 5.0
 segments = 50
+
+[node name="MagicTrail" type="CPUParticles2D" parent="."]
+position = Vector2( 5.80629e-05, 13 )
+emitting = false
+lifetime = 0.7
+emission_shape = 2
+emission_rect_extents = Vector2( 10, 0 )
+color_ramp = SubResource( 60 )
 
 [connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

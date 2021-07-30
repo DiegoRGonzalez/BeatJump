@@ -32,6 +32,10 @@ func update_buttons():
 	$PanelContainer/Control2/LevelBullet2.disabled = Global.furthestCompleted < 7
 	$PanelContainer/Control2/LevelMixed1.disabled = Global.furthestCompleted < 8
 	$PanelContainer/Control2/LevelWizard.disabled = Global.furthestCompleted < 9
+	
+	#Debug:
+	$PanelContainer/Control2/LevelWizardPost.disabled = false
+	$PanelContainer/Control2/LevelWizardPost.visible = false
 	if(Global.music.playing):
 		return;
 	if Global.furthestCompleted < 6:

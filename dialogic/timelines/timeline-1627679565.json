@@ -17,28 +17,16 @@
 			"wait_seconds": 1
 		},
 		{
-			"call_node": {
-				"arguments": [
-
-				],
-				"method_name": "_turn_left",
-				"target_node_path": "Global.Player"
-			},
-			"event_id": "dialogic_042"
+			"emit_signal": "left",
+			"event_id": "dialogic_040"
 		},
 		{
 			"event_id": "dialogic_023",
 			"wait_seconds": 1
 		},
 		{
-			"call_node": {
-				"arguments": [
-
-				],
-				"method_name": "_turn_right",
-				"target_node_path": "Global.Player"
-			},
-			"event_id": "dialogic_042"
+			"emit_signal": "right",
+			"event_id": "dialogic_040"
 		},
 		{
 			"character": "character-1627433932.json",
@@ -53,14 +41,60 @@
 			"text": "I think I can figure something out"
 		},
 		{
-			"call_node": {
-				"arguments": [
-
-				],
-				"method_name": "_float_up",
-				"target_node_path": "Global.Player"
-			},
-			"event_id": "dialogic_042"
+			"event_id": "dialogic_023",
+			"wait_seconds": 1
+		},
+		{
+			"emit_signal": "float",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_023",
+			"wait_seconds": 1
+		},
+		{
+			"character": "character-1627433932.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Whats happening?!"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Dont Worry you'll be back in no time"
+		},
+		{
+			"event_id": "dialogic_023",
+			"wait_seconds": 1
+		},
+		{
+			"emit_signal": "throw",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_023",
+			"wait_seconds": 3
+		},
+		{
+			"emit_signal": "crow_right",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1627433942.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I have a new SmilinBeats cd, want to listen to it?"
+		},
+		{
+			"character": "character-1627442006.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Yeah, sounds good to me."
+		},
+		{
+			"emit_signal": "end",
+			"event_id": "dialogic_040"
 		}
 	],
 	"metadata": {

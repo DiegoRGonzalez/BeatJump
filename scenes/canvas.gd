@@ -11,6 +11,21 @@ func _ready():
 	Global.music.connect("beat", self, "_on_Music_beat")	
 	pass # Replace with function body.
 
+func _process(delta):
+	if Global.show_beat:
+		$Beat.visible = true;
+		$Frame.visible = true;
+		$FrameBG.visible = true;
+		for child in get_children():
+			if "beatball" in child:
+				child.visible = true;
+	else:
+		$Beat.visible = false;
+		$Frame.visible = false;
+		$FrameBG.visible = false;
+		for child in get_children():
+			if "beatball" in child:
+				child.visible = false;
 
 func _on_Music_beat(beat):
 	if (beat%4!=1 && beat%4!=3):
