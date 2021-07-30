@@ -16,7 +16,6 @@ onready var songs = get_children()
 const default_vol = 0
 
 var ref_track : Object
-var playing_tracks = []
 var time = 0.0
 var beat = 1.0
 var last_beat = -1
@@ -43,17 +42,7 @@ signal end
 signal shuffle
 signal song_changed
 
-func set_volume(vol):
-	var song = _songname_to_int(current_song_num)
-	var layer = _trackname_to_int(song, vol)
-	songs[song]._get_core().get_child(layer).volume_db = vol
-	var target = playing_tracks[layer]
-	target.set_volume_db(vol)
-
 func _ready():
-	for i in songs:
-		if i.ignore:
-			songs.remove(songs.find(i))
 	var shuff = Timer.new()
 	shuff.name = 'shuffle_timer'
 	add_child(shuff)
@@ -78,9 +67,6 @@ func _ready():
 				
 #loads a song and gets ready to play
 func init_song(track):
-	if playing:
-		get_child(current_song_num).playing = false
-	playing_tracks.clear()
 	track = _songname_to_int(track)
 	var song = songs[track]
 	var root = song._get_core()
@@ -177,7 +163,6 @@ func _trackname_to_int(song, ref):
 #play a song
 func play(song):
 	song = _songname_to_int(song)
-	get_child(song).playing = true
 	time = 0
 	bar = 1
 	beat = 1
@@ -188,7 +173,6 @@ func play(song):
 			var first = true
 			for o in i.get_children():
 				var newtrk = _iplay(o)
-				playing_tracks.append(newtrk)
 				if first:
 					ref_track = newtrk
 					first = false
@@ -197,6 +181,7 @@ func play(song):
 		emit_signal("bar", bar)
 		_beat()
 		playing = true
+					
 	_play_overlays(song)
 
 func _play_overlays(song):
@@ -285,8 +270,7 @@ func solo(song, layer):
 func mute(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
-	songs[song]._get_core().get_child(layer).volume_db = -65.0
-	var target = playing_tracks[layer]
+	var target = songs[song]._get_core().get_child(layer)
 	target.set_volume_db(-60.0)
 	var pos = songs[song].muted_tracks.find(layer)
 	if pos == null:
@@ -296,14 +280,13 @@ func mute(song, layer):
 func unmute(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
-	songs[song]._get_core().get_child(layer).volume_db = 0
-	var target = playing_tracks[layer]
+	var target = songs[song]._get_core().get_child(layer)
 	target.set_volume_db(default_vol)
 	var pos = songs[song].muted_tracks.find(layer)
 	if pos != -1:
 		songs[song].muted_tracks.remove(pos)
 
-#mutes a track if not muted, or vice versa
+#mutes a track if not mutes, or vice versa
 func toggle_mute(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
@@ -317,8 +300,7 @@ func toggle_mute(song, layer):
 func fade_in(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
-	songs[song]._get_core().get_child(layer).volume_db = default_vol
-	var target = playing_tracks[layer]
+	var target = songs[song]._get_core().get_child(layer)
 	var tween = target.get_node("Tween")
 	var in_from = target.get_volume_db()
 	tween.interpolate_property(target, 'volume_db', in_from, default_vol, transition_beats, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -331,11 +313,10 @@ func fade_in(song, layer):
 func fade_out(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
-	songs[song]._get_core().get_child(layer).volume_db = -65.0
-	var target = playing_tracks[layer]
+	var target = songs[song]._get_core().get_child(layer)
 	var tween = target.get_node("Tween")
 	var in_from = target.get_volume_db()
-	tween.interpolate_property(target, 'volume_db', in_from, -65.0, transition_beats, Tween.TRANS_SINE, Tween.EASE_OUT)
+	tween.interpolate_property(target, 'volume_db', in_from, -60.0, transition_beats, Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.start()
 
 #fades a track in if silent, fades out if not
@@ -408,46 +389,35 @@ func _change_song(song):
 #stops playing
 func stop(song):
 	song = _songname_to_int(song)
-	get_child(song).playing = false
 	if playing:
 		playing = false
 		for i in songs[song]._get_core().get_children():
 			i.stop()
-			i.stream.loop = false
+#			i.stream.loop = false
 		_stop_overlays()
 
 #when the core loop finishes its loop
 func _core_finished():
 	songs[current_song_num].concats.clear()
 	emit_signal("end", current_song_num)
-	match get_current_song().song_type:
-		"standard":
-			match play_mode:
-				1:
-					bar = 1
-					beat = 1
-					last_beat = -1
-					repeats += 1
-					play(current_song_num)
-				2:
-					$shuffle_timer.start(rand_range(2,4))
-				3:
-					shuffle_songs()
-				4:
-					var new_song
-					if current_song_num == (get_child_count() - 3):
-						new_song = 0
-					else:
-						new_song = current_song_num + 1
-					_change_song(new_song)
-		"transition":
-			var t = get_current_song().target_song
-			var desk = t.get_parent()
-			if desk == self:
-				_change_song(t.name)
+	match play_mode:
+		1:
+			bar = 1
+			beat = 1
+			last_beat = -1
+			repeats += 1
+			play(current_song_num)
+		2:
+			$shuffle_timer.start(rand_range(2,4))
+		3:
+			shuffle_songs()
+		4:
+			var new_song
+			if current_song_num == (get_child_count() - 3):
+				new_song = 0
 			else:
-				stop(current_song_num)
-				desk.quickplay(t.name)
+				new_song = current_song_num + 1
+			_change_song(new_song)
 
 #called every bar
 func _bar():
@@ -486,9 +456,6 @@ func _beat():
 		_core_finished()
 	emit_signal("beat", (beat - 1) % int(bars * beats_in_bar) + 1)
 
-func get_current_song():
-	return get_child(current_song_num)
-
 #gets a random track from a song and returns it
 func _get_rantrk(song):
 	song = _songname_to_int(song)
@@ -499,10 +466,12 @@ func _get_rantrk(song):
 #choose new song randomly
 func shuffle_songs():
 	randomize()
-	var list = songs
-	list.remove(list.find(get_child(current_song_num)))
-	var song_num = randi() % (list.size() - 1)
-	var song = get_child(song_num).name
-	emit_signal("shuffle", [current_song_num, get_node(song).get_index()])
-	new_song = get_node(song).get_index()
+	var song = randi() % (songs.size())
+	if song == current_song_num:
+		if song == 0:
+			song += 1
+		elif song == songs.size() - 1:
+			song -= 1
+	emit_signal("shuffle", [current_song_num, song])
+	new_song = song
 	_change_song(song)

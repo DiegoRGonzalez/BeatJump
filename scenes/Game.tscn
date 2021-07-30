@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/GamePauseMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/common/Music.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/GameDevAssets/NotMuted.png" type="Texture" id=4]
 [ext_resource path="res://assets/GameDevAssets/Muted.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Entities/Beat.gd" type="Script" id=6]
@@ -14,8 +13,6 @@
 pause_mode = 2
 script = ExtResource( 1 )
 pause_menu_scn = ExtResource( 2 )
-
-[node name="MixingDeskMusic" parent="." instance=ExtResource( 3 )]
 
 [node name="canvas" type="CanvasLayer" parent="."]
 script = ExtResource( 7 )

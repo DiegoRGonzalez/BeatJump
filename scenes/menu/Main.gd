@@ -8,6 +8,10 @@ export(PackedScene) var game_scn
 
 onready var app_state = $GameState
 
+
+func _ready():
+	Global.load();
+
 func _on_GameState_transited(from, to):
 	# Create StateDirectory to handle nested state better, not required for simple state machine
 	var from_dir = StateDirectory.new(from)

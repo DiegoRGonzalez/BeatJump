@@ -8,6 +8,8 @@ var mutedVolume = -5000;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.music = $MixingDeskMusic;
+	Global.music_box = self;
+	$MixingDeskMusic.init_song("Song1")
 	pass # Replace with function body.
 
 func _process(delta):
@@ -18,6 +20,14 @@ func _process(delta):
 		setVolume(Global.volume);
 	if (muted != Global.muted):
 		toggleMute();
+		
+		
+func playsound(sound):
+	match sound:
+		"Death":
+			$Death.playing = true;
+		"sigh":
+			$sigh.playing = true;
 
 
 func toggleMute():

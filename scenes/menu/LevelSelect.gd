@@ -1,39 +1,50 @@
 extends "res://scenes/common/BaseUi.gd"
 
-export(PackedScene) var level_1_scn
-export(PackedScene) var level_2_scn
-export(PackedScene) var level_3_scn
-export(PackedScene) var level_4_scn
-export(PackedScene) var level_5_scn
-export(PackedScene) var level_6_scn
-export(PackedScene) var level_7_scn
-export(PackedScene) var level_8_scn
-export(PackedScene) var level_9_scn
-export(PackedScene) var level_10_scn
+export(PackedScene) var level_outside_scn
+export(PackedScene) var level_vanilla1_scn
+export(PackedScene) var level_vanilla2_scn
+export(PackedScene) var level_vanilla3_scn
+export(PackedScene) var level_bullet1_scn
+export(PackedScene) var level_bullet2_scn
+export(PackedScene) var level_platform1_scn
+export(PackedScene) var level_platform2_scn
+export(PackedScene) var level_mixed1_scn
+export(PackedScene) var level_wizard_scn
+export(PackedScene) var level_wizard_post_scn
+
+func update_buttons():
+	$PanelContainer/Control2/LevelVanilla1.visible = Global.furthestCompleted >= 1
+	$PanelContainer/Control2/LevelVanilla2.visible = Global.furthestCompleted >= 2
+	$PanelContainer/Control2/LevelVanilla3.visible = Global.furthestCompleted >= 3
+	$PanelContainer/Control2/LevelPlatform1.visible = Global.furthestCompleted >= 4
+	$PanelContainer/Control2/LevelPlatform2.visible = Global.furthestCompleted >= 5
+	$PanelContainer/Control2/LevelBullet1.visible = Global.furthestCompleted >= 6
+	$PanelContainer/Control2/LevelBullet2.visible = Global.furthestCompleted >= 7
+	$PanelContainer/Control2/LevelMixed1.visible = Global.furthestCompleted >= 8
+	$PanelContainer/Control2/LevelWizard.visible = Global.furthestCompleted >= 9
+		
+	$PanelContainer/Control2/LevelVanilla1.disabled = Global.furthestCompleted < 1
+	$PanelContainer/Control2/LevelVanilla2.disabled = Global.furthestCompleted < 2
+	$PanelContainer/Control2/LevelVanilla3.disabled = Global.furthestCompleted < 3
+	$PanelContainer/Control2/LevelPlatform1.disabled = Global.furthestCompleted < 4
+	$PanelContainer/Control2/LevelPlatform2.disabled = Global.furthestCompleted < 5
+	$PanelContainer/Control2/LevelBullet1.disabled = Global.furthestCompleted < 6
+	$PanelContainer/Control2/LevelBullet2.disabled = Global.furthestCompleted < 7
+	$PanelContainer/Control2/LevelMixed1.disabled = Global.furthestCompleted < 8
+	$PanelContainer/Control2/LevelWizard.disabled = Global.furthestCompleted < 9
+	if(Global.music.playing):
+		return;
+	if Global.furthestCompleted < 6:
+		Global.music.quickplay("Song1");
+	else:
+		Global.music.quickplay("Song2");
+	
 
 func _ready():
 	Global.load();
 	print(Global.furthestCompleted)
-	$PanelContainer/Control2/level2.visible = Global.furthestCompleted >= 1
-	$PanelContainer/Control2/level3.visible = Global.furthestCompleted >= 2
-	$PanelContainer/Control2/level4.visible = Global.furthestCompleted >= 3
-	$PanelContainer/Control2/level5.visible = Global.furthestCompleted >= 4
-	$PanelContainer/Control2/level6.visible = Global.furthestCompleted >= 5
-	$PanelContainer/Control2/level7.visible = Global.furthestCompleted >= 6
-	$PanelContainer/Control2/level8.visible = Global.furthestCompleted >= 7
-	$PanelContainer/Control2/level9.visible = Global.furthestCompleted >= 8
-	$PanelContainer/Control2/level10.visible = Global.furthestCompleted >= 9
-		
-	$PanelContainer/Control2/level2.disabled = Global.furthestCompleted < 1
-	$PanelContainer/Control2/level3.disabled = Global.furthestCompleted < 2
-	$PanelContainer/Control2/level4.disabled = Global.furthestCompleted < 3
-	$PanelContainer/Control2/level5.disabled = Global.furthestCompleted < 4
-	$PanelContainer/Control2/level6.disabled = Global.furthestCompleted < 5
-	$PanelContainer/Control2/level7.disabled = Global.furthestCompleted < 6
-	$PanelContainer/Control2/level8.disabled = Global.furthestCompleted < 7
-	$PanelContainer/Control2/level9.disabled = Global.furthestCompleted < 8
-	$PanelContainer/Control2/level10.disabled = Global.furthestCompleted < 9
-	
+	update_buttons();
+
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -41,61 +52,74 @@ func _unhandled_key_input(event):
 			app_state.set_trigger("back")
 	if event.is_action_pressed("cheat"):
 		Global.furthestCompleted += 1;
-		_ready()
+		update_buttons();
+	if event.is_action_pressed("cheatdown"):
+		Global.furthestCompleted -= 1;
+		update_buttons();
 
-func _on_level1_pressed():
+func _on_LevelOutside_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_1_scn)
+		app_state.set_param("game/level_scn", level_outside_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level2_pressed():
+func _on_LevelVanilla1_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_2_scn)
+		app_state.set_param("game/level_scn", level_vanilla1_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level3_pressed():
+func _on_LevelVanilla2_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_3_scn)
+		app_state.set_param("game/level_scn", level_vanilla2_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level4_pressed():
+func _on_LevelVanilla3_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_4_scn)
+		app_state.set_param("game/level_scn", level_vanilla3_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level5_pressed():
+func _on_LevelBullet1_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_5_scn)
-		app_state.set_trigger("level_selected")
-		
-func _on_level6_pressed():
-	if app_state:
-		app_state.set_param("game/level_scn", level_6_scn)
+		app_state.set_param("game/level_scn", level_bullet1_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level7_pressed():
+func _on_LevelBullet2_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_7_scn)
-		app_state.set_trigger("level_selected")
-		
-func _on_level8_pressed():
-	if app_state:
-		app_state.set_param("game/level_scn", level_8_scn)
+		app_state.set_param("game/level_scn", level_bullet2_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level9_pressed():
+func _on_LevelPlatform1_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_9_scn)
+		app_state.set_param("game/level_scn", level_platform1_scn)
 		app_state.set_trigger("level_selected")
 
 
-func _on_level10_pressed():
+func _on_LevelPlatform2_pressed():
 	if app_state:
-		app_state.set_param("game/level_scn", level_10_scn)
+		app_state.set_param("game/level_scn", level_platform2_scn)
 		app_state.set_trigger("level_selected")
+
+
+func _on_LevelMixed1_pressed():
+	if app_state:
+		app_state.set_param("game/level_scn", level_mixed1_scn)
+		app_state.set_trigger("level_selected")
+
+
+func _on_LevelWizard_pressed():
+	if app_state:
+		app_state.set_param("game/level_scn", level_wizard_scn)
+		app_state.set_trigger("level_selected")
+
+
+func _on_LevelWizardPost_pressed():
+	Global.music.stop("Song2")
+	if app_state:
+		app_state.set_param("game/level_scn", level_wizard_post_scn)
+		app_state.set_trigger("level_selected")
+	pass # Replace with function body.

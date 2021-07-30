@@ -15,6 +15,8 @@ var falling_count = 0;
 var floor_normal = Vector2.UP;
 var talking = false;
 
+var end = false;
+
 var using_joystick = false;
 var last_jump_time = OS.get_system_time_msecs()
 
@@ -34,12 +36,18 @@ func _ready():
 	smp.connect("updated", self, "_on_StateMachinePlayer_updated")
 	smp.connect("transited", self, "_on_StateMachine_transited")
 	Global.music.connect("beat", self, "_on_Music_beat")
+	
+	if(get_parent().last_scene):
+		$JumpDotLong.visible = false;
+		$Sprite.flip_h = false;
 
 
 func _physics_process(delta):
 	_update_wall_direction();
 	_update_jump_direction();
-	$Sprite.flip_h = ((get_global_mouse_position() - get_global_position()).x < 0);
+	smp.set_param("end", end);
+	if(!get_parent().last_scene):
+		$Sprite.flip_h = ((get_global_mouse_position() - get_global_position()).x < 0);
 	velocity += gravity;
 	match smp.current:
 			"idle":
@@ -113,7 +121,11 @@ func jump(mod=1):
 func die():
 	smp.set_trigger("die")
 	$Sprite.z_index = 10;
-	
+	var songname = "Song1";
+	if get_parent().level_num >= 7:
+		songname = "Song2";
+	Global.music.stop(songname)
+	Global.music_box.playsound("Death")
 func talk_crow():
 	talking = true;
 	velocity = Vector2.ZERO;
@@ -211,6 +223,8 @@ func _on_StateMachine_transited(from, to):
 		"die":
 			velocity = Vector2.ZERO;
 			velocity += Vector2.UP*20;
+		"end":
+			$Sprite/AnimationPlayer.play("sigh");
 	pass;
 
 func _on_Music_beat(beat):
@@ -256,3 +270,16 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if (anim_name == "die"):
 		get_parent()._fade_out();
 	pass # Replace with function body.
+	
+	
+	
+# Dialog events:
+func _turn_left():
+	$Sprite.flip_h = true;
+
+func _turn_right():
+	$Sprite.flip_h = false;
+	
+	
+func _float_up():
+	gravity *= -0.2;

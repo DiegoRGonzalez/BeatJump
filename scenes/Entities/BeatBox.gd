@@ -22,3 +22,17 @@ func _process(delta):
 func _on_Music_beat(beat):
 	if beat%4 == 1 || beat%4 == 3:
 		scale = Vector2(1.3,1.3)
+
+
+func _on_EndArea_body_entered(body):
+	if not ("Player" in body.name):
+		return;
+	var songname = "Song1";
+	if get_parent().level_num >= 5:
+		songname = "Song2";
+	Global.player.velocity = Vector2.ZERO;
+	Global.music.stop(songname)
+	Global.player.end = true;
+	Global.music_box.playsound("sigh")
+	get_parent().slow_fadeout();
+	pass # Replace with function body.

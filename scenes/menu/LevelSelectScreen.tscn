@@ -1,19 +1,20 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/fonts/mayor/Mayor-Italic.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/menu/LevelSelect.gd" type="Script" id=2]
-[ext_resource path="res://scenes/levels/level1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/levels/level2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/levels/level3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/levels/level4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/levels/level5.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/levels/level6.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/levels/level7.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/levels/level8.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/levels/level9.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/levels/leveloutside.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/levelvanilla1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/levels/levelvanilla2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/levels/levelvanilla3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/levels/levelbullet1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/levels/levelbullet2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/levels/levelplatform1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/levels/levelplatform2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/levels/levelmixed1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/terrain/castle_gray_fill.png" type="Texture" id=12]
-[ext_resource path="res://scenes/levels/level10.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/levels/levelwizard1.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=14]
+[ext_resource path="res://scenes/levels/levelwizardpostscene.tscn" type="PackedScene" id=15]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -29,20 +30,20 @@ font_data = SubResource( 2 )
 
 [sub_resource type="Theme" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFontData" id=7]
+[sub_resource type="DynamicFontData" id=6]
 font_path = "res://assets/fonts/mayor/Mayor-Italic.ttf"
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=7]
 size = 30
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 7 )
+font_data = SubResource( 6 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=8]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=9]
 size = 30
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
@@ -58,16 +59,17 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-level_1_scn = ExtResource( 3 )
-level_2_scn = ExtResource( 4 )
-level_3_scn = ExtResource( 5 )
-level_4_scn = ExtResource( 6 )
-level_5_scn = ExtResource( 7 )
-level_6_scn = ExtResource( 8 )
-level_7_scn = ExtResource( 9 )
-level_8_scn = ExtResource( 10 )
-level_9_scn = ExtResource( 11 )
-level_10_scn = ExtResource( 13 )
+level_outside_scn = ExtResource( 3 )
+level_vanilla1_scn = ExtResource( 4 )
+level_vanilla2_scn = ExtResource( 5 )
+level_vanilla3_scn = ExtResource( 6 )
+level_bullet1_scn = ExtResource( 7 )
+level_bullet2_scn = ExtResource( 8 )
+level_platform1_scn = ExtResource( 9 )
+level_platform2_scn = ExtResource( 10 )
+level_mixed1_scn = ExtResource( 11 )
+level_wizard_scn = ExtResource( 13 )
+level_wizard_post_scn = ExtResource( 15 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_right = 1025.0
@@ -114,182 +116,200 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="level1" type="Button" parent="PanelContainer/Control2"]
-margin_left = 53.0
-margin_top = 173.0
-margin_right = 385.0
-margin_bottom = 198.0
+[node name="LevelOutside" type="Button" parent="PanelContainer/Control2"]
+margin_left = 66.0815
+margin_top = 178.303
+margin_right = 398.081
+margin_bottom = 203.303
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "1. Outside The CAstle"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Outside The Tower"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level2" type="Button" parent="PanelContainer/Control2"]
-margin_left = 54.5925
-margin_top = 217.005
-margin_right = 321.592
-margin_bottom = 251.005
+[node name="LevelVanilla1" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.9062
+margin_top = 208.52
+margin_right = 332.906
+margin_bottom = 242.52
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
-text = "2. Castle Beginings"
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+text = "Tower Beginings"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level3" type="Button" parent="PanelContainer/Control2"]
-margin_left = 53.7937
-margin_top = 261.101
-margin_right = 385.794
-margin_bottom = 286.101
+[node name="LevelVanilla2" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.8145
+margin_top = 244.13
+margin_right = 397.815
+margin_bottom = 269.13
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "3. Floating Pillars"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Floating Pillars"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level4" type="Button" parent="PanelContainer/Control2"]
-margin_left = 53.8409
-margin_top = 304.18
-margin_right = 385.841
-margin_bottom = 329.18
+[node name="LevelVanilla3" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.1546
+margin_top = 275.189
+margin_right = 516.155
+margin_bottom = 300.189
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "4. Wall Jumping on the ceiling"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Wall Jumping on the ceiling"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level5" type="Button" parent="PanelContainer/Control2"]
-margin_left = 53.8409
-margin_top = 346.225
-margin_right = 540.841
-margin_bottom = 371.225
+[node name="LevelBullet1" type="Button" parent="PanelContainer/Control2"]
+margin_left = 66.435
+margin_top = 370.688
+margin_right = 553.435
+margin_bottom = 395.688
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "5. Magic Fights Back"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Magic Fights Back"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level6" type="Button" parent="PanelContainer/Control2"]
-margin_left = 53.0
-margin_top = 389.951
-margin_right = 540.0
-margin_bottom = 414.951
+[node name="LevelBullet2" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.6898
+margin_top = 403.091
+margin_right = 552.69
+margin_bottom = 428.091
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "6. Cranking up the heat"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Cranking up the heat"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level7" type="Button" parent="PanelContainer/Control2"]
-margin_left = 52.1591
-margin_top = 429.473
-margin_right = 539.159
-margin_bottom = 454.473
+[node name="LevelPlatform1" type="Button" parent="PanelContainer/Control2"]
+margin_left = 64.6673
+margin_top = 307.869
+margin_right = 551.667
+margin_bottom = 332.869
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "7. Outside the box"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "Outside the box"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level8" type="Button" parent="PanelContainer/Control2"]
-margin_left = 48.7955
-margin_top = 465.631
-margin_right = 535.795
-margin_bottom = 490.631
+[node name="LevelPlatform2" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.2309
+margin_top = 339.077
+margin_right = 552.23
+margin_bottom = 364.077
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "8. The Dynamic Elevator"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "The Dynamic Elevator"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level9" type="Button" parent="PanelContainer/Control2"]
-margin_left = 46.2728
-margin_top = 502.631
-margin_right = 533.273
-margin_bottom = 527.631
+[node name="LevelMixed1" type="Button" parent="PanelContainer/Control2"]
+margin_left = 64.9884
+margin_top = 434.471
+margin_right = 551.989
+margin_bottom = 459.471
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "9. A Final Push"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "A Final Push"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level10" type="Button" parent="PanelContainer/Control2"]
-margin_left = 45.4319
-margin_top = 544.676
-margin_right = 532.432
-margin_bottom = 569.676
+[node name="LevelWizard" type="Button" parent="PanelContainer/Control2"]
+margin_left = 65.2309
+margin_top = 467.248
+margin_right = 552.231
+margin_bottom = 492.248
 theme = SubResource( 4 )
 custom_styles/hover = ExtResource( 14 )
 custom_styles/pressed = ExtResource( 14 )
 custom_styles/focus = ExtResource( 14 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = SubResource( 8 )
-text = "10. The Wizard"
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "The Wizard"
 align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="PanelContainer/Control2/level1" to="." method="_on_level1_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level2" to="." method="_on_level2_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level3" to="." method="_on_level3_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level4" to="." method="_on_level4_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level5" to="." method="_on_level5_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level6" to="." method="_on_level6_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level7" to="." method="_on_level7_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level8" to="." method="_on_level8_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level9" to="." method="_on_level9_pressed"]
-[connection signal="pressed" from="PanelContainer/Control2/level10" to="." method="_on_level10_pressed"]
+[node name="LevelWizardPost" type="Button" parent="PanelContainer/Control2"]
+margin_left = 638.722
+margin_top = 165.366
+margin_right = 1125.72
+margin_bottom = 190.366
+theme = SubResource( 4 )
+custom_styles/hover = ExtResource( 14 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/focus = ExtResource( 14 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+text = "The Wizard Post"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="PanelContainer/Control2/LevelOutside" to="." method="_on_LevelOutside_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelVanilla1" to="." method="_on_LevelVanilla1_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelVanilla2" to="." method="_on_LevelVanilla2_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelVanilla3" to="." method="_on_LevelVanilla3_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelBullet1" to="." method="_on_LevelBullet1_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelBullet2" to="." method="_on_LevelBullet2_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelPlatform1" to="." method="_on_LevelPlatform1_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelPlatform2" to="." method="_on_LevelPlatform2_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelMixed1" to="." method="_on_LevelMixed1_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelWizard" to="." method="_on_LevelWizard_pressed"]
+[connection signal="pressed" from="PanelContainer/Control2/LevelWizardPost" to="." method="_on_LevelWizardPost_pressed"]

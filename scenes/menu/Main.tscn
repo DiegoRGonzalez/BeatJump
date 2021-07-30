@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" type="Script" id=7]
 [ext_resource path="res://scenes/menu/LevelSelectScreen.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Game.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/common/Music.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 4 )
@@ -356,5 +357,7 @@ game_scn = ExtResource( 9 )
 [node name="GameState" type="Node" parent="."]
 script = ExtResource( 2 )
 state_machine = SubResource( 43 )
+
+[node name="MixingDeskMusic" parent="." instance=ExtResource( 10 )]
 
 [connection signal="transited" from="GameState" to="." method="_on_GameState_transited"]

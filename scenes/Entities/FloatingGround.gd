@@ -9,6 +9,7 @@ export(bool) var moving = true;
 export(Vector2) var moveDirection = Vector2.UP;
 export(int) var move_period = 16
 export(int) var speed = 300;
+export(Vector2) var velocity_mod = Vector2(1,1);
 
 var curBeat = 0;
 var startBeat;
@@ -30,6 +31,8 @@ func _process(delta):
 		else:
 			$StaticBody2D.position -= moveDirection*speed*delta
 			$StaticBody2D.constant_linear_velocity = -1*moveDirection*speed
+		$StaticBody2D.constant_linear_velocity.x *= velocity_mod.x;
+		$StaticBody2D.constant_linear_velocity.y *= velocity_mod.y;
 
 
 
