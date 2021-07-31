@@ -23,9 +23,9 @@ name = "exit"
 [sub_resource type="Resource" id=3]
 script = ExtResource( 4 )
 __meta__ = {
-"graph_offset": Vector2( 493.5, 140 )
+"graph_offset": Vector2( 888, 60 )
 }
-name = "main_menu"
+name = "game"
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 4 )
@@ -37,9 +37,9 @@ name = "level_select"
 [sub_resource type="Resource" id=5]
 script = ExtResource( 4 )
 __meta__ = {
-"graph_offset": Vector2( 888, 60 )
+"graph_offset": Vector2( 493.5, 140 )
 }
-name = "game"
+name = "main_menu"
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 3 )
@@ -50,15 +50,15 @@ conditions = {
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 3 )
-from = "main_menu"
-to = "exit"
+from = "game"
+to = "main_menu"
 conditions = {
 }
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 3 )
-from = "main_menu"
-to = "level_select"
+from = "level_select"
+to = "game"
 conditions = {
 }
 
@@ -71,15 +71,15 @@ conditions = {
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 3 )
-from = "level_select"
-to = "game"
+from = "main_menu"
+to = "exit"
 conditions = {
 }
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 3 )
-from = "game"
-to = "main_menu"
+from = "main_menu"
+to = "level_select"
 conditions = {
 }
 
@@ -89,24 +89,24 @@ name = ""
 states = {
 "Entry": SubResource( 1 ),
 "exit": SubResource( 2 ),
-"game": SubResource( 5 ),
+"game": SubResource( 3 ),
 "level_select": SubResource( 4 ),
-"main_menu": SubResource( 3 )
+"main_menu": SubResource( 5 )
 }
 transitions = {
 "Entry": {
 "main_menu": SubResource( 6 )
 },
 "game": {
-"main_menu": SubResource( 11 )
+"main_menu": SubResource( 7 )
 },
 "level_select": {
-"game": SubResource( 10 ),
+"game": SubResource( 8 ),
 "main_menu": SubResource( 9 )
 },
 "main_menu": {
-"exit": SubResource( 7 ),
-"level_select": SubResource( 8 )
+"exit": SubResource( 10 ),
+"level_select": SubResource( 11 )
 }
 }
 

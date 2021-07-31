@@ -38,7 +38,7 @@ func update_buttons():
 	$PanelContainer/Control2/LevelWizardPost.visible = false
 	if(Global.music.playing):
 		return;
-	if Global.furthestCompleted < 6:
+	if Global.furthestCompleted < 8:
 		Global.music.quickplay("Song1");
 	else:
 		Global.music.quickplay("Song2");

@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=2]
@@ -17,8 +17,7 @@
 [ext_resource path="res://scenes/common/Exit.gd" type="Script" id=15]
 [ext_resource path="res://scenes/levels/baselevel.gd" type="Script" id=16]
 [ext_resource path="res://assets/terrain/castle_allaround.png" type="Texture" id=17]
-[ext_resource path="res://assets/GameDevAssets/platformerGraphicsDeluxe_Updated/Tiles/liquidLava.png" type="Texture" id=18]
-[ext_resource path="res://assets/GameDevAssets/platformerGraphicsDeluxe_Updated/bg.png" type="Texture" id=19]
+[ext_resource path="res://assets/GameDevAssets/bg.png" type="Texture" id=18]
 [ext_resource path="res://assets/terrain/castle_gray_fill.png" type="Texture" id=20]
 [ext_resource path="res://assets/GameDevAssets/door.png" type="Texture" id=21]
 [ext_resource path="res://assets/terrain/castle_top_left.png" type="Texture" id=22]
@@ -907,7 +906,6 @@ modulate = Color( 1, 1, 1, 0 )
 position = Vector2( -676.663, 1133.5 )
 scale = Vector2( 91.0013, 3.81305 )
 z_index = -5
-texture = ExtResource( 18 )
 
 [node name="DeathArea2D" type="Area2D" parent="Lava"]
 __meta__ = {
@@ -926,14 +924,14 @@ modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 245.131, -212.335 )
 scale = Vector2( 18.3571, 13.163 )
 z_index = 10
-texture = ExtResource( 19 )
+texture = ExtResource( 18 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.843137, 0.709804, 0.858824, 1 )
 position = Vector2( -62.5031, 625.393 )
 scale = Vector2( 30.0481, 17.0199 )
 z_index = -10
-texture = ExtResource( 19 )
+texture = ExtResource( 18 )
 __meta__ = {
 "_edit_lock_": true
 }
